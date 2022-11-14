@@ -37,4 +37,4 @@ Seattle NFT Museum’s website offers a blogpost for the users, but doesnt have 
 Unit London is another digital-exclusive museum in London that focuses on digital forms of art though they only cater to a single museum. Our focus will be to develop a web application that can be used by multiple museums. 
 
 
-![alt text](https://github.com/kshitijnair/CS5610-museum/blob/main/figma_design.jpg?raw=true)
+![alt text](https://github.com/kshitijnair/CS5610-museum/blob/main/figma_design.png?raw=true)
