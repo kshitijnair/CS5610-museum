@@ -15,7 +15,41 @@ module.exports = {
             catch (err) {
                 console.log("Connection error", err)
             }
-        }
+        },
+        getProfile: async function (userID) {
+            try {
+                // works for ALL users
+                const result = await client.db("museums").collection("users").find();
+                // works for only ONE user
+                // const result = await client.db("museums").collection("users").findOne(filter);
+                const user = await result.toArray();
+                console.log("----------------User----------------");
+                console.log(user);
+                return user;
+            } catch (err) {
+                throw new Error("User doesn't exist!");
+            }
+        },
+        addUserProfile: async function (user) {
+            try {
+                const result = await client.db("museums").collection("users").insertOne(user);
+            } catch(err) {
+                throw new Error("Couldn't add new user: ", err);
+            }
+        },
+        editUser: async function (filter, user) {
+            try {
+                const options = { upsert: true };
+                const updatedData = {
+                    $set: user,
+                };
+                const result = await client.db("museums").collection("users").updateOne(filter, updatedData, options);
+                return result;
+            } catch(err) {
+                throw new Error("Error updating user", err);
+            }
+        },
+        
 
     // addToDB: async function (task) {
     //     try {

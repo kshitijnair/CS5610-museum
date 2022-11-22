@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-
 const {connectToDB} = require('./database');
 
 const app = express();
@@ -21,9 +20,8 @@ app.use("/details", detailsRouter);
 app.use("/login", loginRouter);
 app.use("/search", searchRouter);
 
-
 app.get('/', (req, res) => {
-
+    res.send("NodeJS server running...")
 })
 
 app.listen(PORT, () => {
