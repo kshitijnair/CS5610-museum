@@ -1,9 +1,9 @@
 const express = require("express");
 const axios = require("axios");
-const {connectToDB} = require('./database');
+const { connectToDB } = require("./database");
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 const homeRouter = require("./routes/home");
 const profileRouter = require("./routes/profile");
@@ -20,11 +20,11 @@ app.use("/details", detailsRouter);
 app.use("/login", loginRouter);
 app.use("/search", searchRouter);
 
-app.get('/', (req, res) => {
-    res.send("NodeJS server running...")
-})
+app.get("/", (req, res) => {
+  res.send("NodeJS server running...");
+});
 
-app.listen(PORT, () => {
+app.listen(PORT, "https://test-031a.onrender.com", () => {
   console.log(`Server running on http://localhost:${PORT}`);
   connectToDB();
 });
