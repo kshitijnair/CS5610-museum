@@ -49,6 +49,39 @@ module.exports = {
                 throw new Error("Error updating user", err);
             }
         },
+        getFirstUser: async function () {
+            try {
+                // works for ALL users
+                const result = await client.db("museums").collection("users").find();
+                // works for only ONE user
+                // const result = await client.db("museums").collection("users").findOne(filter);
+                const user = await result.toArray();
+                console.log("----------------User----------------");
+                console.log(user[1]);
+                return user[0];
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
+        removeUser: async function (filter) {
+            try {
+                const result = await client.db("museums").collection("users").deleteOne(filter);
+                return result;
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
+        getAllMuseums: async function () {
+            try {
+                const result = await client.db("museums").collection("museums").find();
+                const museums = await result.toArray();
+                console.log("----------------Museums----------------");
+                console.log(museums);
+                return museums;
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
         
 
     // addToDB: async function (task) {
