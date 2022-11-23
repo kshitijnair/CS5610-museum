@@ -1,9 +1,10 @@
 const express = require("express");
 const axios = require("axios");
 const { connectToDB } = require("./database");
+const cors = require("cors");
 
 const app = express();
-const PORT = 8080;
+const PORT = 3005;
 
 const homeRouter = require("./routes/home");
 const profileRouter = require("./routes/profile");
@@ -11,6 +12,7 @@ const detailsRouter = require("./routes/details");
 const loginRouter = require("./routes/login");
 const searchRouter = require("./routes/search");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
