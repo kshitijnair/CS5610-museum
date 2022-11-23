@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const { ObjectId } = require("mongodb");
-const { getProfile, getFirstUser, removeUser } = require('../database')
+const { getProfile, getFirstUser, removeUser, editUser } = require('../database')
 
 router.get("/", (req, res) => {
   res.send("Hello ProfilePage");
@@ -30,6 +30,19 @@ router.delete('/deleteUser', async (req, res) =>{
   let result = await removeUser({_id: ObjectId(id)});
   console.log(result);
   res.json(result);
+})
+
+router.post('/updateUser', async (req, res) => {
+  const updatedData = {
+    name: `${req.body.name}`,
+    email: `${req.body.email}`,
+    phone: `${req.body.phone}`
+  };
+  console.log(updatedData, req.body.id);
+  console.log("**************")
+  let response = await editUser({_id: ObjectId(req.body.id)}, updatedData);
+  console.log(response);
+  res.json(response);
 })
 
 module.exports = router;

@@ -44,6 +44,7 @@ module.exports = {
                     $set: user,
                 };
                 const result = await client.db("museums").collection("users").updateOne(filter, updatedData, options);
+                console.log(user, filter);
                 return result;
             } catch(err) {
                 throw new Error("Error updating user", err);
