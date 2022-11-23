@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
   res.send("NodeJS server running...");
 });
 
-app.listen(PORT, "https://test-031a.onrender.com", () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
   connectToDB();
 });
