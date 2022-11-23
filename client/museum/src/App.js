@@ -1,32 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import { getUser, removeUser, updateUser, getMuseums } from './methods'
 
-const getContent = () => {
-  fetch('http://localhost:8000/home' + word)
-    .then(result => result.json())
-    .then(body => setAssociations(body));
-};
+import Navigation from './components/Navigation';
+import Header from './components/Header';
+import UserComponent from './components/UserComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={getAssociations}>Find Associations</button>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Museum </h1>
+      <Navigation name='Kshitij'/> 
+      <Header title = "Users"/>
+      <UserComponent />
+
     </div>
   );
 }
 
-export default App;
+export default App; 
+
+/**
+ * users - current user, update(form), delete
+ * museums - view all
+ */
