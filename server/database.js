@@ -147,6 +147,62 @@ module.exports = {
     }
   },
 
+  //Artifacts Addition
+  addArtifactProfile: async function (artifact) {
+    try {
+      const result = await client
+        .db("museums")
+        .collection("artifacts")
+        .insertOne(artifact);
+    } catch (err) {
+      throw new Error("Couldn't add new artifact: ", err);
+    }
+  },
+
+  editArtifact: async function (filter, artifact) {
+    try {
+      const options = { upsert: true };
+      const updatedData = {
+        $set: artifact,
+      };
+      const result = await client
+        .db("museums")
+        .collection("artifacts")
+        .updateOne(filter, updatedData, options);
+      console.log(user, filter);
+      return result;
+    } catch (err) {
+      throw new Error("Error updating artifact", err);
+    }
+  },
+
+  getFirstArtifact: async function () {
+    try {
+      // works for ALL artifacts
+      const result = await client.db("museums").collection("artifacts").find();
+      // works for only ONE artifact
+      // const result = await client.db("artifacts").collection("artifacts").findOne(filter);
+      const user = await result.toArray();
+      console.log("----------------Artifact----------------");
+      console.log(artifacts[1]);
+      return artifacts[0];
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  removeArtifact: async function (filter) {
+    try {
+      const result = await client
+        .db("museums")
+        .collection("artifacts")
+        .deleteOne(filter);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
   // addToDB: async function (task) {
   //     try {
   //         const result = await client.db("cs5610").collection("tasks").insertOne(task);
