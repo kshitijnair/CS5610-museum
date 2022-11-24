@@ -7,19 +7,29 @@ import { useState } from 'react'
 
 const MuseumComponent = () => {
   const [museumList, setList] = useState([
-    {
-      id: 1,
-      name: 'MET'
-    },
-    {
-      id: 2,
-      name: "Unit London"
-    },
-    {
-      id: 3,
-      name: 'Vancouver Art Gallery'
-    }
+    // {
+    //   id: 1,
+    //   name: 'MET'
+    // },
+    // {
+    //   id: 2,
+    //   name: "Unit London"
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Vancouver Art Gallery'
+    // }
   ])
+
+  async function getMuseums() {
+    // setList(museumList);
+    let museumList = {}
+    const response = await fetch('http://localhost:3005/home/museums') 
+    const data = await response.json();
+    console.log(data)
+    setList(data);
+    console.log('getting museums');
+  }
 
   return (
     <div>
