@@ -16,29 +16,29 @@ On the opening page, we would have the museum list and the navigation controls f
 
 
 On the front end you can:
-    1. Get the user at the top (implemented as the view for a single user for now to show reading, updating and deletion)
-    2. Form for updating the user in the database
-    3. View all Museums stored in the database
+1. Get the user at the top (implemented as the view for a single user for now to show reading, updating and deletion)
+2. Form for updating the user in the database
+3. View all Museums stored in the database
 
 On the back end you can:
 Here you can visit the 5 different pages (With APIs to create, read, update and delete items according to our needs)
-    1. Home page: https://museum-server-ae4u.onrender.com/home
-    2. Log in/Register page: https://museum-server-ae4u.onrender.com/login
-    3. Profile page: https://museum-server-ae4u.onrender.com/profile
-    4. Search/Search Results page: https://museum-server-ae4u.onrender.com/search
-    5. Details page: https://museum-server-ae4u.onrender.com/details
+1. Home page: https://museum-server-ae4u.onrender.com/home
+2. Log in/Register page: https://museum-server-ae4u.onrender.com/login
+3. Profile page: https://museum-server-ae4u.onrender.com/profile
+4. Search/Search Results page: https://museum-server-ae4u.onrender.com/search
+5. Details page: https://museum-server-ae4u.onrender.com/details
 
 ### Contributions:
 
 Kshitij:
-    1. Implemented the client-side React Components
-    2. Implemented CRUD operations on the front-end
-    3. Connected front-end to back-end
-    4. Implemented client-side deployment on Render
-    5. Created all the async functions for CRUD operations in the back-end
+1. Implemented the client-side React Components
+2. Implemented CRUD operations on the front-end
+3. Connected front-end to back-end
+4. Implemented client-side deployment on Render
+5. Created all the async functions for CRUD operations in the back-end
 
 Navneet:
-    1. Created router for all 5 pages in the back-end
-    2. Created the 3 collections on MongoDB(users, artifacts, museums) and checked for connection
-    3. Implemented server-side deployment on Render
-    4. Connected the server-side render deployment link to client-side
+1. Created router for all 5 pages in the back-end
+2. Created the 3 collections on MongoDB(users, artifacts, museums) and checked for connection
+3. Implemented server-side deployment on Render
+4. Connected the server-side render deployment link to client-side
