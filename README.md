@@ -48,9 +48,13 @@ Navneet:
 The client side page which you see from the Render deployment
 
 
+
+
 ![image](https://user-images.githubusercontent.com/44190671/203726419-53b823d9-62b8-43e6-8d84-88b91b989ea3.png)
 
 When you click on "See First User button" it fetched the first user record. On clicking delete, the user record is deleted, the same can be verified from console.
+
+
 
 
 ![image](https://user-images.githubusercontent.com/44190671/203726959-de63c92e-7819-474f-a863-6ac1daac6e09.png)
@@ -58,9 +62,13 @@ When you click on "See First User button" it fetched the first user record. On c
 One can update the user profile entries by clicking on Update button
 
 
+
+
 ![image](https://user-images.githubusercontent.com/44190671/203727149-bc86f5e6-5901-4765-a960-4b7bf7c8cda4.png)
 
 When clicked on Get All Museums, one can fetch all the museums present in the existing database.
+
+
 
 
 ![image](https://user-images.githubusercontent.com/44190671/203727533-fe716880-d117-459c-b096-aea2b1d33c3b.png)
