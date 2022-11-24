@@ -91,6 +91,35 @@ module.exports = {
     }
   },
 
+  // Museum Addition
+  addMuseumProfile: async function (museum) {
+    try {
+      const result = await client
+        .db("museums")
+        .collection("museums")
+        .insertOne(museum);
+    } catch (err) {
+      throw new Error("Couldn't add new Museum: ", err);
+    }
+  },
+
+  editMuseum: async function (filter, museum) {
+    try {
+      const options = { upsert: true };
+      const updatedData = {
+        $set: museum,
+      };
+      const result = await client
+        .db("museums")
+        .collection("museum")
+        .updateOne(filter, updatedData, options);
+      console.log(user, filter);
+      return result;
+    } catch (err) {
+      throw new Error("Error updating Museum", err);
+    }
+  },
+
   // addToDB: async function (task) {
   //     try {
   //         const result = await client.db("cs5610").collection("tasks").insertOne(task);
