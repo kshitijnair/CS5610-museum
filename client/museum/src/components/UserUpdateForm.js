@@ -8,11 +8,6 @@ const UserUpdateForm = ({ user }) => {
 
   async function updateData(data) {
     const id = document.getElementById('id').innerText;
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('email', email);
-    formData.append('id', id);
     data = {...data, id: id}
     console.log(formData.getAll);
     const options = {
