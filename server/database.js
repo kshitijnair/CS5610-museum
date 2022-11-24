@@ -111,12 +111,39 @@ module.exports = {
       };
       const result = await client
         .db("museums")
-        .collection("museum")
+        .collection("museums")
         .updateOne(filter, updatedData, options);
       console.log(user, filter);
       return result;
     } catch (err) {
       throw new Error("Error updating Museum", err);
+    }
+  },
+
+  getFirstMuseum: async function () {
+    try {
+      // works for ALL museums
+      const result = await client.db("museums").collection("museums").find();
+      // works for only ONE museum
+      // const result = await client.db("museums").collection("museums").findOne(filter);
+      const user = await result.toArray();
+      console.log("----------------Museum----------------");
+      console.log(museums[1]);
+      return museums[0];
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  removeMuseum: async function (filter) {
+    try {
+      const result = await client
+        .db("museums")
+        .collection("museums")
+        .deleteOne(filter);
+      return result;
+    } catch (error) {
+      throw new Error(error);
     }
   },
 
