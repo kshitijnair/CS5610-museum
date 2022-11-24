@@ -1,40 +1,44 @@
-# CS5610 Project Proposal
+# CS5610 Project - Museum Website
 
-#### By Kshitij Nair and Navneet Ratnakirti:
+### By Kshitij Nair and Navneet Ratnakirti:
 
-##### Introduction
-With the age of digitization, there have been major developments in how art is not only created but also distributed. For example, with NFTs gaining popularity, it’s now easier than ever for anyone to create and show their art. Museums that have housed artifacts ranging from coins and papyrus to oil paintings and sculptures, now hold digital exhibitions using displays and holograms. The research being done in this field suggests that artifacts at museums could soon be digitized as 3D models in different formats  and distributed amongst other museums. 
-We propose a web-based application that accommodates this new form for sharing and displaying artifacts or digital art. For development purposes, we shall be limiting our websites to the curation of such collections by the admin and searching and ticket purchasing by the user. Additional features will also be added throughout the development phases.  
+#### Iteration 1:
+We have created and deployed the front-end and back-end of the museum website. For the same, we have hosted two servers for the client and server side, each on two web services online on Render.
 
+The client-side page (front-end):
+> https://museum-client.onrender.com/
 
-##### Target Audience
+The server-side page (back-end):
+> https://museum-server-ae4u.onrender.com/
 
-It will cater to 2 types of users- the curators (museum stakeholders) and visitors. The curators will be able to maintain, create and change the museum’s online exhibition. The visitors will be able to login, make bookings and view exhibitions. 
-
-Curator Pain Points:
-1. Request artifacts from other museums
-2. Have single artifacts at multiple exhibitions 
-
-Visitor Pain Points:
-1. Searching for available artifacts
-2. Easy delivery of tickets
+All the routes and links have been created and can be accessed by typing the below URLs in the address bar. The basis of CRUD operations has been established on the client-side page where you can do operations like getting the list of museums, searching, deleting and updating the user. For the creation and authentication of users, we would be using Auth0 by Okta.
+On the opening page, we would have the museum list and the navigation controls for all the available routes. At this stage, all the soft connections are made and we would be implementing CRUD operations as required on the respective pages.
 
 
-##### Database Requirements
-Your application should include at least 3 collections in the database.
-Our application will contain 3 or 4 collections in MongoDB- 
-1. User Database: Containing the login information of all the users including their usernames, hashed passwords and user type (admin or visitor) and ticket information if they have any.
-2. Museums: Containing the name of the museum, location, rooms and occupied/available spaces.
-3. Artifacts: Containing the name, description and other information important for the Artifact.
-4. Rooms (Considering): Information about each room, the museum it is situated in, artifacts that it holds, etc. This could either be included in the Museums Collection or be linked with unique Museum codes in that collection.
+On the front end you can:
+1. Get the user at the top (implemented as the view for a single user for now to show reading, updating and deletion)
+2. Form for updating the user in the database
+3. View all Museums stored in the database
 
+On the back end you can:
+Here you can visit the 5 different pages (With APIs to create, read, update and delete items according to our needs)
+1. Home page: https://museum-server-ae4u.onrender.com/home
+2. Log in/Register page: https://museum-server-ae4u.onrender.com/login
+3. Profile page: https://museum-server-ae4u.onrender.com/profile
+4. Search/Search Results page: https://museum-server-ae4u.onrender.com/search
+5. Details page: https://museum-server-ae4u.onrender.com/details
 
-##### Competitor Research:
-Digital Museum Softwares are mostly non-public and not advertised so market research based on our capabilities is limited. So, our major focus with this project will be towards creating a Digital Asset Management tool that also serves as an information access-point for the common user, only adding certain administrative features for selected individuals.
+### Contributions:
 
-Seattle NFT Museum’s website offers a blogpost for the users, but doesnt have a list of all the collections that they offer. Also not included is Artist information, which is something that we plan to add to our website.
+Kshitij:
+1. Implemented the client-side React Components
+2. Implemented CRUD operations on the front-end
+3. Connected front-end to back-end
+4. Implemented client-side deployment on Render
+5. Created all the async functions for CRUD operations in the back-end
 
-Unit London is another digital-exclusive museum in London that focuses on digital forms of art though they only cater to a single museum. Our focus will be to develop a web application that can be used by multiple museums. 
-
-
-![alt text](https://github.com/kshitijnair/CS5610-museum/blob/main/figma_design.png?raw=true)
+Navneet:
+1. Created router for all 5 pages in the back-end
+2. Created the 3 collections on MongoDB(users, artifacts, museums) and checked for connection
+3. Implemented server-side deployment on Render
+4. Connected the server-side render deployment link to client-side

@@ -7,9 +7,9 @@ router.get("/", (req, res) => {
   res.send("Hello HomePage");
 });
 
-router.get('/museums', async (req, res) => {
+router.get("/museums", async (req, res) => {
   const museums = await getAllMuseums();
   res.json(museums);
-})
+});
 
 module.exports = router;
