@@ -4,7 +4,8 @@ const { connectToDB } = require("./database");
 const cors = require("cors");
 
 const app = express();
-const PORT = 3005;
+const PORT = process.env.PORT || 8080;
+// const PORT = 3005;
 
 const homeRouter = require("./routes/home");
 const profileRouter = require("./routes/profile");
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
   res.send("NodeJS server running...");
 });
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   connectToDB();
 });
