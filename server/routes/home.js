@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const { getAllMuseums } = require("../database");
-const { getAllMuseums } = require("../database");
 
 router.get("/", (req, res) => {
   res.send("Hello HomePage");
