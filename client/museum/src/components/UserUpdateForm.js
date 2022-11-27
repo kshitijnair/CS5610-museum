@@ -7,7 +7,7 @@ const UserUpdateForm = ({ user }) => {
 
   async function updateData(data) {
     const id = document.getElementById('id').innerText;
-    data = {...data, id: id}\
+    data = {...data, id: id}
     console.log(formData.getAll);
     const options = {
       method: "POST",
