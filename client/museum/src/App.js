@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <Navigation></Navigation>
+      <Navigation name="Navneet"></Navigation>
       <div className="container">
         <h1>Museum </h1>
         <Routes>

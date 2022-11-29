@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import AuthNav from "./auth-nav";
 
 const Navigation = ({ name }) => {
   return (
@@ -13,6 +14,7 @@ const Navigation = ({ name }) => {
           <CustomLink to="/search">Search</CustomLink>
           <CustomLink to="/details">Details</CustomLink>
         </ul>
+        <AuthNav />
       </nav>
     </div>
   );
