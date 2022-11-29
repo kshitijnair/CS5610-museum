@@ -1,13 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-// require("dotenv").config();
 
 const Auth0ProviderWithHistory = ({ children }) => {
-  //   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-  //   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  const domain = "dev-zpiol3kr8naftnb7.us.auth0.com";
-  const clientId = "xoBTkmjj5GTbk2CE19FUTcNVfvNPQSFj";
+  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+  const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
   const navigate = useNavigate();
 
