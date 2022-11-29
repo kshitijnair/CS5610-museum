@@ -9,10 +9,19 @@ import MuseumComponent from "./components/MuseumComponent";
 import Details from "./components/Details";
 import Search from "./components/Search";
 import Home from "./components/Home";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Switch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import Profile from "./components/profile";
+import Loading from "./components/loading";
 
 function App() {
   console.log(window.location);
+
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -23,12 +32,20 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/details" element={<Details />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
         <Header title="Users" />
         <UserComponent />
         <MuseumComponent />
       </div>
+      {/* <div className="container flex-grow-1">
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/external-api" component={ExternalApi} />
+        </Switch>
+      </div> */}
     </>
   );
 }

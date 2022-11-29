@@ -13,6 +13,7 @@ const Navigation = ({ name }) => {
         <ul>
           <CustomLink to="/search">Search</CustomLink>
           <CustomLink to="/details">Details</CustomLink>
+          <CustomLink to="/profile">Profile</CustomLink>
         </ul>
         <AuthNav />
       </nav>
