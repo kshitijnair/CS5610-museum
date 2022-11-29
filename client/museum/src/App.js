@@ -9,25 +9,38 @@ import MuseumComponent from "./components/MuseumComponent";
 import Details from "./components/Details";
 import Search from "./components/Search";
 import Home from "./components/Home";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
   console.log(window.location);
 
   return (
     <>
-      <Navigation></Navigation>
+      <Navigation ></Navigation>
       <div className="container">
-        <h1>Museum </h1>
+        <h1 className="title">Museum </h1>
+        <nav className="nav">
+          <ul>
+            <li>
+              <Link to = "/">Home</Link>
+            </li>
+            <li>
+              <Link to = '/museums'>Museums</Link>
+            </li>
+            <li>
+              <Link to = '/search'>Search</Link>
+            </li>
+            <li>
+              <Link to = '/user'>Profile</Link>
+            </li>
+          </ul>
+        </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/details" element={<Details />} />
-          <Route path="/search" element={<Search />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/museums" element={<MuseumComponent />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/user" element={<UserComponent />}></Route>
         </Routes>
-
-        <Header title="Users" />
-        <UserComponent />
-        <MuseumComponent />
       </div>
     </>
   );

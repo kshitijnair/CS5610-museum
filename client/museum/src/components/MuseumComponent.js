@@ -2,35 +2,19 @@ import React from "react";
 import Header from "./Header";
 import Button from "./Button";
 import List from "./List";
-import { getMuseums } from "../methods";
 import { useState } from "react";
 
 const MuseumComponent = () => {
-  const [museumList, setList] = useState([
-    // {
-    //   id: 1,
-    //   name: 'MET'
-    // },
-    // {
-    //   id: 2,
-    //   name: "Unit London"
-    // },
-    // {
-    //   id: 3,
-    //   name: 'Vancouver Art Gallery'
-    // }
-  ]);
+  const [museumList, setList] = useState([]);
 
   async function getMuseums() {
-    // setList(museumList);
-    let museumList = {};
+    console.log("getting museums");
     const response = await fetch(
       "https://museum-server-ae4u.onrender.com/home/museums"
     );
-    const data = await response.json();
-    console.log(data);
-    setList(data);
-    console.log("getting museums");
+    const museumList = await response.json();
+    console.log(museumList);
+    setList(museumList);
   }
 
   return (
