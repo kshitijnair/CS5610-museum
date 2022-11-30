@@ -1,9 +1,9 @@
 import React from 'react'
-import { Carousel } from 'react-responsive-carousel';
-import Slider from "react-slick";
+import { useState, useEffect } from 'react';
 
 const TopMuseums = () => {
-    const list = ([
+    const [isLoading, setLoading] = useState(true);
+    const [list, setList] = useState([
         {
             name:'Museum 1',
             description: 'museum 1 lorem epsum'
@@ -15,14 +15,32 @@ const TopMuseums = () => {
         {
             name:'Museum 3',
             description: 'museum 3 lorem epsum'
-        },
+        }
     ])
 
-    return (
-        <div>
-            
-        </div>
+    useEffect(() => {
+        async function getTopMuseums() {
+            const data = fetchTopMuseums();
+            // const topMuseums = data.json();
+            setList(data);
+            setLoading(false);
+        }
+        // get list of all museums and use setList to set the view of top museums
+        getTopMuseums();
+    }, [])
+
+    async function fetchTopMuseums() {
+        return list;
+    }
+
+    const lists = (
+    <div>
+        {/* <List list = {list}/> */}
+        oops
+    </div>
     )
+
+    return (<>{ isLoading ? <h1>Loading...</h1> : lists }</>)
 }
 
 export default TopMuseums

@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { getUser, removeUser, updateUser, getMuseums } from "./methods";
 
-import Navigation from "./components/Navigation";
+// import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 import UserComponent from "./components/UserComponent";
 import MuseumComponent from "./components/MuseumComponent";
@@ -12,11 +12,10 @@ import Home from "./components/Home";
 import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
-  console.log(window.location);
 
   return (
     <>
-      <Navigation ></Navigation>
+      {/* <Navigation ></Navigation> */}
       <div className="container">
         <h1 className="title">Museum </h1>
         <nav className="nav">
@@ -26,9 +25,6 @@ function App() {
             </li>
             <li>
               <Link to = '/museums'>Museums</Link>
-            </li>
-            <li>
-              <Link to = '/search'>Search</Link>
             </li>
             <li>
               <Link to = '/user'>Profile</Link>
