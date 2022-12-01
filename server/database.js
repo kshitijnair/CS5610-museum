@@ -120,15 +120,16 @@ module.exports = {
     }
   },
 
-  getFirstMuseum: async function () {
+  getFirstMuseum: async function (object) {
     try {
-      // works for ALL museums
-      const result = await client.db("museums").collection("museums").find();
+      //// works for ALL museums
+      //// const result = await client.db("museums").collection("museums").find();
       // works for only ONE museum
-      // const result = await client.db("museums").collection("museums").findOne(filter);
-      const user = await result.toArray();
+      const result = await client.db("museums").collection("museums").find(object);
+      console.log(result)
+      const museums = await result.toArray();
       console.log("----------------Museum----------------");
-      console.log(museums[1]);
+      console.log(museums[0]);
       return museums[0];
     } catch (error) {
       throw new Error(error);
@@ -202,6 +203,31 @@ module.exports = {
       throw new Error(error);
     }
   },
+  getTickets: async function () {
+    try {
+      // works for ALL users
+      // const result = await client.db("museums").collection("users").find();
+      // works for only ONE user
+      const result = await client.db("museums").collection("tickets").find();
+      const tickets = await result.toArray();
+      console.log("----------------tickets----------------");
+      console.log(tickets[1]);
+      return tickets;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  purchaseTicket: async function (ticket) {
+    try {
+      const response = await client
+        .db("museums")
+        .collection("tickets")
+        .insertOne(ticket);
+      console.log(response);
+    } catch (err) {
+      throw new Error("Couldn't add new user: ", err);
+    }
+  }
 
   // addToDB: async function (task) {
   //     try {
