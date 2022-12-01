@@ -2,8 +2,8 @@
 
 ### By Kshitij Nair and Navneet Ratnakirti:
 
-#### Iteration 1:
-We have created and deployed the front-end and back-end of the museum website. For the same, we have hosted two servers for the client and server side, each on two web services online on Render.
+#### Iteration 2:
+We have created and deployed the front-end and back-end of the museum website. For the same, we have hosted two separate deployments for the client and server side, each on two web services online on Render.
 
 The client-side page (front-end):
 > https://museum-client.onrender.com/
@@ -11,66 +11,57 @@ The client-side page (front-end):
 The server-side page (back-end):
 > https://museum-server-ae4u.onrender.com/
 
-All the routes and links have been created and can be accessed by typing the below URLs in the address bar. The basis of CRUD operations has been established on the client-side page where you can do operations like getting the list of museums, searching, deleting and updating the user. For the creation and authentication of users, we would be using Auth0 by Okta.
-On the opening page, we would have the museum list and the navigation controls for all the available routes. At this stage, all the soft connections are made and we would be implementing CRUD operations as required on the respective pages.
+The first step is to run the server-side link of Render and wait for the page to load. After a few seconds it should say on the webpage “NodeJS server running...”. This would signify that the MongoDB server is up and running. Only then we should launch the client-side link hosted on Render.
 
+In the current state of the deployment, we have a main branch and an auth0 branch. The main branch is what is currently deployed on the client-side on Render. The difference between the two branches is that in auth0 we have implemented the Login/Logout and Profile functionality and in the main we have all the CRUD operations for booking tickets. As the implementation for auth0 is required for the 3rd Iteration and user authentication is directly linked to the Profile page, we have chosen to let any anonymous user to Create, Read, Update and Delete the tickets they have booked. In the 3rd Iteration, user authentication would be merged with the ticket booking system.
 
-On the front end you can:
-1. Get the user at the top (implemented as the view for a single user for now to show reading, updating and deletion)
-2. Form for updating the user in the database
-3. View all Museums stored in the database
+Rest all functionalities has been implemented as follows
 
-On the back end you can:
-Here you can visit the 5 different pages (With APIs to create, read, update and delete items according to our needs)
-1. Home page: https://museum-server-ae4u.onrender.com/home
-2. Log in/Register page: https://museum-server-ae4u.onrender.com/login
-3. Profile page: https://museum-server-ae4u.onrender.com/profile
-4. Search/Search Results page: https://museum-server-ae4u.onrender.com/search
-5. Details page: https://museum-server-ae4u.onrender.com/details
+1. Home page: 
+It has the Navigation bar which itself is on every other page. It shows the list of popular museum, and clicking on which would take them to the Details page where they can book the tickets
+
+2. Log in/Register page:
+User authentication has been implemented where you can Signin/Signup using the login button on the top-right. If a user directly clicks on the Profile tab before logging in, it will redirect to the Signin/Signup page of Auth0. (Please note, this functionality is only implemented on the auth0 branch on our GitHub repo and not on main)
+
+3. Profile page:
+This page allows the user to do Create(Book tickets for a particular museum), Read(See if they have booked tickets or not), Update(Change the ticket details like date/time) and Delete(Cancel any tickets they have booked) operations.
+
+4. Search/Search Results page:
+This page has a search bar, in which one can start typing the name of the museum and the museums matching the search team would be populated on the page. From that they can select the museum they want to visit/book, which in turn would take them to the Details page.
+
+5. Details page: 
+On the page, the user can view the searched museum from the Search page and can book tickets after entering the ticket information. This acts as a Museum Details or Ticket booking page for the website.
+
 
 ### Contributions:
 
 Kshitij:
-1. Implemented the client-side React Components
-2. Implemented CRUD operations on the front-end
-3. Connected front-end to back-end
-4. Implemented client-side deployment on Render
-5. Created all the async functions for CRUD operations in the back-end
+1. Created Navigation Components 
+2. Created hooks for components to load and render data
+3. Designed logical flow of the application
 
 Navneet:
-1. Created router for all 5 pages in the back-end
-2. Created the 3 collections on MongoDB(users, artifacts, museums) and checked for connection
-3. Implemented server-side deployment on Render
-4. Connected the server-side render deployment link to client-side
-
-![image](https://user-images.githubusercontent.com/44190671/203725895-d0d606f6-086f-4de1-bb30-7dd47ad7facf.png)
-
-The client side page which you see from the Render deployment
+1. Added navigation tabs on the Home page to go to Search, Profile or Details page
+2. Added user authentication from Auth0 to the website (auth0 branch)
+3. Implemented the Login/Logout button along with its connection to the profile page
 
 
+![image](https://user-images.githubusercontent.com/44190671/204997512-d78e1a18-7056-4c58-b9f3-98327a1d98b1.png)
 
 
-![image](https://user-images.githubusercontent.com/44190671/203726419-53b823d9-62b8-43e6-8d84-88b91b989ea3.png)
-
-When you click on "See First User button" it fetched the first user record. On clicking delete, the user record is deleted, the same can be verified from console.
+The Search Page to find any museum. By default it has all the museums listed.
 
 
 
+![image](https://user-images.githubusercontent.com/44190671/204997922-d437209d-94bf-4b13-aac3-25d87e5a45c2.png)
 
-![image](https://user-images.githubusercontent.com/44190671/203726959-de63c92e-7819-474f-a863-6ac1daac6e09.png)
-
-One can update the user profile entries by clicking on Update button
-
+Ticket booking after clicking on the searched museum. Click on Purchase to confirm.
 
 
+![image](https://user-images.githubusercontent.com/44190671/204998397-1eb57a2f-2735-40ce-9b6f-c629153567b3.png)
 
-![image](https://user-images.githubusercontent.com/44190671/203727149-bc86f5e6-5901-4765-a960-4b7bf7c8cda4.png)
+Multiple tickets booked by the user.
 
-When clicked on Get All Museums, one can fetch all the museums present in the existing database.
+![image](https://user-images.githubusercontent.com/44190671/204998440-f1dff454-e29a-4d6e-a0bb-f55df1e450e9.png)
 
-
-
-
-![image](https://user-images.githubusercontent.com/44190671/203727533-fe716880-d117-459c-b096-aea2b1d33c3b.png)
-
-MongoDB setup for all three collections
+Ticket list of user after a ticket is deleted
