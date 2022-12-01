@@ -7,10 +7,16 @@ const Ticket = ({ tickets }) => {
     })
 
     const deleteBooking = async (id) => {
+        console.log("ID IS: ---------", id)
         const options = {
             method: "DELETE",
-        }
-        const response = await fetch('http://localhost', options);
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id : id}),
+        };
+        const response = await fetch('https://museum-server-ae4u.onrender.com/tickets/delete', options);
+        this.forceUpdate()
     }
 
     const ticketRender = (
@@ -31,7 +37,7 @@ const Ticket = ({ tickets }) => {
                         </div>
                         <p>Total: ${ticket.price * ticket.number}</p>
                     </div>
-                    <button onClick={() => deleteBooking(ticket.bookingID)}>Delete Booking</button>
+                    <button onClick={() => deleteBooking(ticket.id)}>Delete Booking</button>
                 </div></li>
                 )
             )}

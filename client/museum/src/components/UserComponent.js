@@ -62,12 +62,12 @@ const UserComponent = () => {
           },
         body: JSON.stringify(ticket),
       };
-      const repsonse = await fetch('http://localhost:8080/tickets/purchase', options)
+      const repsonse = await fetch('https://museum-server-ae4u.onrender.com/tickets/purchase', options)
     }
   }, [])
 
   async function fetchTickets() {
-    const response = await fetch("http://localhost:8080/tickets/tickets");
+    const response = await fetch("https://museum-server-ae4u.onrender.com/tickets/tickets");
     const tickets = await response.json();
     return tickets;
   }
@@ -81,6 +81,7 @@ const UserComponent = () => {
   const userRender = (
     <>
       <div className="userCard">
+        <h3>User Details:</h3>
         <div>
           <img className="userImage" src="" alt="" />
           <p className="userName">{user.name}</p>
@@ -98,7 +99,7 @@ const UserComponent = () => {
   )
 
   return (
-    <>{ loadingTickets ? <h1>Lading data...</h1> : userRender }</>
+    <>{ loadingTickets ? <h1>Loading data...</h1> : userRender }</>
     // <div>
     //   <h4>
     //     <p>Name: {user.name}</p>

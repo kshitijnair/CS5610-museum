@@ -19,7 +19,7 @@ const UserUpdateForm = ({ user }) => {
       body: JSON.stringify(data),
     };
     const response = await fetch(
-      "http://localhost:3005/profile/updateUser",
+      "https://museum-server-ae4u.onrender.com/profile/updateUser",
       options
     );
     const res = response.json();
