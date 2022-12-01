@@ -227,6 +227,18 @@ module.exports = {
     } catch (err) {
       throw new Error("Couldn't add new user: ", err);
     }
+  },
+  deleteTicket: async function (id) {
+    try {
+      console.log("deleting ->>>>>>>>",id)
+      const response = await client
+        .db("museums")
+        .collection("tickets")
+        .deleteOne({id: id});
+      console.log(response);
+    } catch (err) {
+      throw new Error("Couldn't delete ticket: ", err);
+    }
   }
 
   // addToDB: async function (task) {

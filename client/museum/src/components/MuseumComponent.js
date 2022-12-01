@@ -70,8 +70,8 @@ const MuseumComponent = () => {
             }}>
               <img src="" alt="" />
               <p>{val.name}</p>
-              <p>{val._id}</p>
-              <p>--{val.location}</p>
+              {/* <p>{val._id}</p> */}
+              <p>Location: {val.location}</p>
             </div>
         );
       })}

@@ -31,7 +31,7 @@ const Museum = () => {
 
     async function fetchMuseum(id) {
         const response = await fetch(
-            `http://localhost:8080/museum/${id}`
+            `https://museum-server-ae4u.onrender.com/museum/${id}`
         )
         const museumData = await response.json();
         return museumData;
