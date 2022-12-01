@@ -13,6 +13,7 @@ const UserUpdateForm = ({ user }) => {
     formData.append("email", email);
     formData.append("id", id);
     data = { ...data, id: id };
+
     console.log(formData.getAll);
     const options = {
       method: "POST",
