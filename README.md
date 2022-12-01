@@ -24,13 +24,13 @@ It has the Navigation bar which itself is on every other page. It shows the list
 User authentication has been implemented where you can Signin/Signup using the login button on the top-right. If a user directly clicks on the Profile tab before logging in, it will redirect to the Signin/Signup page of Auth0. (Please note, this functionality is only implemented on the auth0 branch on our GitHub repo and not on main)
 
 3. Profile page:
-This page allows the user to do Create(Book tickets for a particular museum), Read(See if they have booked tickets or not), Update(Change the ticket details like date/time) and Delete(Cancel any tickets they have booked) operations.
+This page allows the user to do Create(Book tickets for a particular museum), Read(See the list of booked tickets), Update(Change the ticket details like date/time) and Delete(Cancel any tickets they have booked) operations. Please note if you have booked any tickets, please REFRESH the Profile page to see the changes. Even after clicking the delete button, please refresh the page to see the changes.
 
 4. Search/Search Results page:
-This page has a search bar, in which one can start typing the name of the museum and the museums matching the search team would be populated on the page. From that they can select the museum they want to visit/book, which in turn would take them to the Details page.
+This page is on the Museums tab on the navigation bar. It has a search bar, in which one can start typing the name of the museum and the museums matching the search team would be populated on the page. From that they can click on the museum they want to visit/book, which in turn would take them to the Details page.
 
-5. Details page: 
-On the page, the user can view the searched museum from the Search page and can book tickets after entering the ticket information. This acts as a Museum Details or Ticket booking page for the website.
+5. Details page:
+After clicking on any Museum, it will take you to this page. The user can view the searched museum from the Search page and can book tickets after entering the ticket information. This acts as a Museum Details or Ticket booking page for the website.
 
 
 ### Contributions:
