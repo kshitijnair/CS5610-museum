@@ -32,7 +32,7 @@ const Ticket = ({ tickets }) => {
       body: JSON.stringify(ticket),
     };
     const response = await fetch(
-      "http://localhost:3005/tickets/update",
+      "https://museum-server-ae4u.onrender.com/tickets/update",
       options
     );
   };
