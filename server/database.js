@@ -239,6 +239,23 @@ module.exports = {
     } catch (err) {
       throw new Error("Couldn't delete ticket: ", err);
     }
+  },
+  updateTicket: async function (filter, ticket) {
+    try {
+      console.log("updating ->>>>>>>>", filter);
+      delete ticket._id;
+
+      console.log(ticket)
+
+      const options = { upsert: false };
+      const response = await client
+        .db("museums")
+        .collection("tickets")
+        .updateOne(filter, ticket, options);
+      console.log(response);
+    } catch (err) {
+      throw new Error("Couldn't update ticket: ", err);
+    }
   }
 
   // addToDB: async function (task) {
