@@ -125,8 +125,11 @@ module.exports = {
       //// works for ALL museums
       //// const result = await client.db("museums").collection("museums").find();
       // works for only ONE museum
-      const result = await client.db("museums").collection("museums").find(object);
-      console.log(result)
+      const result = await client
+        .db("museums")
+        .collection("museums")
+        .find(object);
+      console.log(result);
       const museums = await result.toArray();
       console.log("----------------Museum----------------");
       console.log(museums[0]);
@@ -230,11 +233,11 @@ module.exports = {
   },
   deleteTicket: async function (id) {
     try {
-      console.log("deleting ->>>>>>>>",id)
+      console.log("deleting ->>>>>>>>", id);
       const response = await client
         .db("museums")
         .collection("tickets")
-        .deleteOne({id: id});
+        .deleteOne({ id: id });
       console.log(response);
     } catch (err) {
       throw new Error("Couldn't delete ticket: ", err);
@@ -244,19 +247,22 @@ module.exports = {
     try {
       console.log("updating ->>>>>>>>", filter);
       delete ticket._id;
+      const update = {
+        $set: ticket,
+      };
 
-      console.log(ticket)
+      console.log(ticket);
 
       const options = { upsert: false };
       const response = await client
         .db("museums")
         .collection("tickets")
-        .updateOne(filter, ticket, options);
+        .updateOne(filter, update, options);
       console.log(response);
     } catch (err) {
       throw new Error("Couldn't update ticket: ", err);
     }
-  }
+  },
 
   // addToDB: async function (task) {
   //     try {
