@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+body {
+  background-color: black;
+  color: white;
+}
+
 .container{
   margin: 2px;
   /* text-align: center; */

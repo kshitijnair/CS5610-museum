@@ -1,7 +1,4 @@
-import React, {useCallback} from "react";
-import Header from "./Header";
-import Button from "./Button";
-import List from "./List";
+import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 
@@ -25,7 +22,7 @@ const MuseumComponent = () => {
   async function fetchMuseums() {
     console.log("fetching museums...");
     const response = await fetch(
-      "https://museum-server-ae4u.onrender.com/home/museums"
+      "http://localhost:8080/home/museums"
     );
     const museumList = await response.json();
     return museumList;

@@ -9,16 +9,8 @@ const UserComponent = () => {
   const [user, setUser] = useState({});
   const [loadingUser, setUserLoading] = useState(true);
   const [loadingTickets, setLoadingTickets] = useState(true);
-  const [tickets, setTickets] = useState([
-    // {
-    //   bookingID: '842IUJ3',
-    //   museumName: "Blitz London",
-    //   amount: 4,
-    //   date: '14 July, 2023',
-    //   time: '4:30 PM',
-    //   price: 142.45
-    // }
-  ])
+  const [tickets, setTickets] = useState([])
+  const [ticketsUpdated, setTicketsUpdated] = useState(false);
 
   let ticket = {};
   const search = useLocation().search;
@@ -32,16 +24,8 @@ const UserComponent = () => {
     console.log("new ticket: ", ticket)
   }
 
-  // getting tickets
+  // get user and adding new tickets (on redirect from MuseumComponent)
   useEffect(() => {
-    async function getTickets() {
-      const tickets = await fetchTickets();
-      console.log("tickets: ", tickets)
-      setTickets(tickets);
-      setLoadingTickets(false);
-    } 
-    getTickets();
-
     async function getUser() {
       const response = await fetchUser();
       console.log("user", response);
@@ -53,8 +37,8 @@ const UserComponent = () => {
     getUser();
 
     // adding new tickets
-
     async function addNewticket(ticket) {
+      setTicketsUpdated(!ticketsUpdated);
       const options = {
         method: "POST",
         headers: {
@@ -62,18 +46,29 @@ const UserComponent = () => {
           },
         body: JSON.stringify(ticket),
       };
-      const repsonse = await fetch('https://museum-server-ae4u.onrender.com/tickets/purchase', options)
+      const repsonse = await fetch('http://localhost:8080/tickets/purchase', options)
     }
   }, [])
 
+  // getting tickets
+  useEffect(() => {
+    async function getTickets() {
+      const tickets = await fetchTickets();
+      console.log("tickets: ", tickets)
+      setTickets(tickets);
+      setLoadingTickets(false);
+    } 
+    getTickets();
+  }, [ticketsUpdated])
+
   async function fetchTickets() {
-    const response = await fetch("https://museum-server-ae4u.onrender.com/tickets/tickets");
+    const response = await fetch("http://localhost:8080/tickets/tickets");
     const tickets = await response.json();
     return tickets;
   }
 
   async function fetchUser() {
-    const response = await fetch("https://museum-server-ae4u.onrender.com/profile/getFirstUser");
+    const response = await fetch("http://localhost:8080/profile/getFirstUser");
     const user = await response.json();
     return user;
   }

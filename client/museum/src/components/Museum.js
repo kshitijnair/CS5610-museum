@@ -31,7 +31,7 @@ const Museum = () => {
 
     async function fetchMuseum(id) {
         const response = await fetch(
-            `https://museum-server-ae4u.onrender.com/museum/${id}`
+            `http://localhost:8080/museum/${id}`
         )
         const museumData = await response.json();
         return museumData;
@@ -42,7 +42,7 @@ const Museum = () => {
     }
 
     const museumRender = (
-        <div>
+        <div className='museumContainer'>
             <div className='museumCard'>
                 <img src="" alt="" />
                 <h2>{museum.name}</h2>
@@ -51,11 +51,14 @@ const Museum = () => {
             </div>
             <div className='bookingCard'>
                 <p>Buy Tickets:</p>
-                <p>Price: ${ticketPrice * number}</p>
-                <input type="number" name="number" id="number" value={number} 
+                <input className='number' type="number" name="number" id="number" value={number} 
                     onChange={(e) => setNumber(e.target.value)}/>
-                <input type="date" name="date" id="date" 
+                <input className='date' type="date" name="date" id="date" 
                     onChange={(e) => setDate(e.target.value)}/>
+                <br /><br />
+                <p>Price:</p>
+                <p className='ticketPrice'>${ticketPrice * number}</p>
+                <br />
                 <button onClick={() => buyTicket(id, number, ticketPrice)}>Purchase</button>
             </div>
         </div>

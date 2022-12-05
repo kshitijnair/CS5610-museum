@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./Home.css";
+import "./MuseumDetails.css"
 
 // import Navigation from "./components/Navigation";
 import UserComponent from "./components/UserComponent";
@@ -15,7 +17,7 @@ function App() {
     <>
       {/* <Navigation ></Navigation> */}
       <div className="container">
-        <h1 className="title">Museum </h1>
+        <h1 className="title">MUSEEUM </h1>
         <nav className="nav">
           <ul>
             <li>

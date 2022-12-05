@@ -23,7 +23,7 @@ const TopMuseums = () => {
 
     async function fetchTopMuseums() {
         const response = await fetch(
-            "https://museum-server-ae4u.onrender.com/home/museums"
+            "http://localhost:8080/home/museums"
             );
         const museumList = await response.json();
         return museumList;
@@ -42,9 +42,9 @@ const TopMuseums = () => {
                 <div className="museumCard" key={id} onClick={ () => {
                 selectMuseum(id);
                 }}>
-                <img src="" alt="" />
-                <p>{val.name}</p>
-                <p>Located in: {val.location}</p>
+                <img className='museumImg' src="" alt="" />
+                <p className='museumName'>{val.name}</p>
+                <p className='museumLocation'>Located in: {val.location}</p>
                 </div>
             );
         })}
