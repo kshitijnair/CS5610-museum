@@ -3,25 +3,28 @@ import Button from "./Button";
 import UserUpdateForm from "./UserUpdateForm";
 import { useState, useEffect } from "react";
 import Ticket from "./Ticket";
-import {useLocation} from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "./loading";
 
 const UserComponent = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(useAuth0());
+  const { name, picture, email } = user;
   const [loadingUser, setUserLoading] = useState(true);
   const [loadingTickets, setLoadingTickets] = useState(true);
-  const [tickets, setTickets] = useState([])
+  const [tickets, setTickets] = useState([]);
   const [ticketsUpdated, setTicketsUpdated] = useState(false);
 
   let ticket = {};
   const search = useLocation().search;
-  if(search.length > 0) {
-    ticket.id = new URLSearchParams(search).get('id');
-    ticket.number = new URLSearchParams(search).get('number');
-    ticket.price =new URLSearchParams(search).get('price');
-    ticket.name =new URLSearchParams(search).get('name');
-    ticket.date =new URLSearchParams(search).get('date');
-    ticket.time =new URLSearchParams(search).get('time');
-    console.log("new ticket: ", ticket)
+  if (search.length > 0) {
+    ticket.id = new URLSearchParams(search).get("id");
+    ticket.number = new URLSearchParams(search).get("number");
+    ticket.price = new URLSearchParams(search).get("price");
+    ticket.name = new URLSearchParams(search).get("name");
+    ticket.date = new URLSearchParams(search).get("date");
+    ticket.time = new URLSearchParams(search).get("time");
+    console.log("new ticket: ", ticket);
   }
 
   // get user and adding new tickets (on redirect from MuseumComponent)
@@ -31,8 +34,8 @@ const UserComponent = () => {
       console.log("user", response);
       setUser(response);
       setUserLoading(false);
-      console.log("ticketticketticket", ticket)
-      if(search.length > 0) addNewticket(ticket);
+      console.log("ticketticketticket", ticket);
+      if (search.length > 0) addNewticket(ticket);
     }
     getUser();
 
@@ -42,24 +45,27 @@ const UserComponent = () => {
       const options = {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          },
+          "Content-Type": "application/json; charset=UTF-8",
+        },
         body: JSON.stringify(ticket),
       };
-      const repsonse = await fetch('http://localhost:8080/tickets/purchase', options)
+      const repsonse = await fetch(
+        "http://localhost:8080/tickets/purchase",
+        options
+      );
     }
-  }, [])
+  }, []);
 
   // getting tickets
   useEffect(() => {
     async function getTickets() {
       const tickets = await fetchTickets();
-      console.log("tickets: ", tickets)
+      console.log("tickets: ", tickets);
       setTickets(tickets);
       setLoadingTickets(false);
-    } 
+    }
     getTickets();
-  }, [ticketsUpdated])
+  }, [ticketsUpdated]);
 
   async function fetchTickets() {
     const response = await fetch("http://localhost:8080/tickets/tickets");
@@ -78,23 +84,24 @@ const UserComponent = () => {
       <div className="userCard">
         <h3>User Details:</h3>
         <div>
-          <img className="userImage" src="" alt="" />
-          <p className="userName">{user.name}</p>
+          <img className="userImage" src={picture} alt="" />
+          <p className="userName">{name}</p>
         </div>
         <div className="userContact">
-          <p className="userEmail">{user.email}</p>
+          <p className="userEmail">{email}</p>
           <p className="userPhone">{user.phone}</p>
         </div>
       </div>
-      <div><br />
+      <div>
+        <br />
         <h2>Tickets:</h2>
-        <Ticket tickets={tickets}/>
+        <Ticket tickets={tickets} />
       </div>
     </>
-  )
+  );
 
   return (
-    <>{ loadingTickets ? <h1>Loading data...</h1> : userRender }</>
+    <>{loadingTickets ? <h1>Loading data...</h1> : userRender}</>
     // <div>
     //   <h4>
     //     <p>Name: {user.name}</p>
@@ -114,4 +121,8 @@ const UserComponent = () => {
   );
 };
 
-export default UserComponent;
+// export default UserComponent;
+
+export default withAuthenticationRequired(UserComponent, {
+  onRedirecting: () => <Loading />,
+});
