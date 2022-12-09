@@ -16,9 +16,10 @@ body {
   width: 70%;
   margin: auto;
   height: 2.5rem;
-  background-color: grey;
+  background-color: rgba(230, 208, 182);
   border-radius: 1rem;
-  color: white;
+  color: black;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: stretch;

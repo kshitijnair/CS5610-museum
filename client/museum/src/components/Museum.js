@@ -53,8 +53,11 @@ const Museum = () => {
             </div>
             <div className='bookingCard'>
                 <p>Buy Tickets:</p>
+                <label htmlFor="number">No. of Tickets</label>
                 <input className='number' type="number" name="number" id="number" value={number} 
                     onChange={(e) => setNumber(e.target.value)}/>
+                    <br />
+                <label htmlFor="date">Date of Visit</label>
                 <input className='date' type="date" name="date" id="date" 
                     onChange={(e) => setDate(e.target.value)}/>
                 <br /><br />
