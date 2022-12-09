@@ -21,11 +21,11 @@ router.get("/user/:userID", async (req, res) => {
 });
 
 router.post("/addUser", async (req, res) => {
-  console.log("adding new user...");
+  // console.log("adding new user...");
   let sub = req.body.sub
   sub = sub.slice(6, sub.length);
   const filter = { _id: ObjectId(sub)};
-  console.log(sub)
+  // console.log(sub)
 
   // const response = await addUserProfile(req.body);
   const response = await editUser(filter, req.body);

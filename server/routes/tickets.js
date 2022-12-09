@@ -7,8 +7,8 @@ const {
   purchaseTicket,
   deleteTicket,
   updateTicket,
+  getTicketsForUser
 } = require("../database");
-const { response } = require("express");
 
 router.get("/", (req, res) => {
   res.send("Hello to Ticketing server");
@@ -19,8 +19,14 @@ router.get("/tickets", async (req, res) => {
   res.json(data);
 });
 
+router.get("/tickets/:userID", async (req, res) => {
+  console.log('user id for tickets is : ', req.params.userID)
+  const data = await getTicketsForUser(req.params.userID);
+  res.json(data);
+});
+
 router.post("/purchase", async (req, res) => {
-  console.log("------------>>>>", req.body);
+  console.log("purchasing----------->>>>", req.body);
   const response = await purchaseTicket(req.body);
   res.json(response);
 });
@@ -37,8 +43,6 @@ router.put("/update", async (req, res) => {
     { _id: ObjectId(req.body["_id"]) },
     req.body
   );
-  //   const response = await updateTicket(req.body["_id"], req.body);
-
   res.json(response);
 });
 

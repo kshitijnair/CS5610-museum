@@ -40,7 +40,7 @@ const Ticket = ({ tickets }) => {
   const ticketRender = (
     <ul>
       {tickets.map((ticket) => (
-        <li key={ticket.bookingID}>
+        <li key={ticket._id}>
           <div>
             <div>
               <p>Ticket</p>

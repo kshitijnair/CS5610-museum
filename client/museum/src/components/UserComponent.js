@@ -8,6 +8,9 @@ import Loading from "./loading";
 const UserComponent = () => {
   const [user, setUser] = useState(useAuth0());
   const userDeets = useAuth0().user;
+  const sub = userDeets.sub
+  const userID = sub.slice(6, sub.length);
+  console.log('USERID IS: ', userID)
   console.log(userDeets)
   const { name, picture, email } = user;
   const [loadingUser, setUserLoading] = useState(true);
@@ -59,6 +62,7 @@ const UserComponent = () => {
     // adding new tickets
     async function addNewticket(ticket) {
       setTicketsUpdated(!ticketsUpdated);
+      ticket.user = userID;
       const options = {
         method: "POST",
         headers: {
@@ -76,7 +80,7 @@ const UserComponent = () => {
   // getting tickets
   useEffect(() => {
     async function getTickets() {
-      const tickets = await fetchTickets();
+      const tickets = await fetchTickets(userID);
       console.log("tickets: ", tickets);
       setTickets(tickets);
       setLoadingTickets(false);
@@ -84,8 +88,12 @@ const UserComponent = () => {
     getTickets();
   }, [ticketsUpdated]);
 
-  async function fetchTickets() {
-    const response = await fetch("http://localhost:8080/tickets/tickets");
+  async function fetchTickets(userID) {
+    console.log("FETCHING TICKETS FOR USER: ", userID)
+    const params = {
+      userID: userID
+    }
+    const response = await fetch(`http://localhost:8080/tickets/tickets/${userID}`);
     const tickets = await response.json();
     return tickets;
   }

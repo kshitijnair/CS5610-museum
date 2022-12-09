@@ -23,7 +23,7 @@ module.exports = {
       // const result = await client.db("museums").collection("users").findOne(filter);
       const user = await result.toArray();
       console.log("----------------User----------------");
-      console.log(user);
+      // console.log(user);
       return user;
     } catch (err) {
       throw new Error("User doesn't exist!");
@@ -66,7 +66,7 @@ module.exports = {
       // const result = await client.db("museums").collection("users").findOne(filter);
       const user = await result.toArray();
       console.log("----------------User----------------");
-      console.log(user[1]);
+      // console.log(user[1]);
       return user[0];
     } catch (error) {
       throw new Error(error);
@@ -88,7 +88,7 @@ module.exports = {
       const result = await client.db("museums").collection("museums").find();
       const museums = await result.toArray();
       console.log("----------------Museums----------------");
-      console.log(museums);
+      // console.log(museums);
       return museums;
     } catch (error) {
       throw new Error(error);
@@ -133,10 +133,10 @@ module.exports = {
         .db("museums")
         .collection("museums")
         .find(object);
-      console.log(result);
+      // console.log(result);
       const museums = await result.toArray();
       console.log("----------------Museum----------------");
-      console.log(museums[0]);
+      // console.log(museums[0]);
       return museums[0];
     } catch (error) {
       throw new Error(error);
@@ -218,11 +218,26 @@ module.exports = {
       const result = await client.db("museums").collection("tickets").find();
       const tickets = await result.toArray();
       console.log("----------------tickets----------------");
-      console.log(tickets[1]);
+      // console.log(tickets[1]);
       return tickets;
     } catch (error) {
       throw new Error(error);
     }
+  },
+  getTicketsForUser: async function (userID) {
+    try {
+      const response = await client
+        .db("museums")
+        .collection("tickets")
+        .find({ user : userID });
+        console.log('********************************************************')
+        console.log(userID)
+      console.log(response);
+      const tickets = await response.toArray();
+      return tickets;
+    } catch (err) {
+      throw new Error("Error - Couldn't find tickets: ", err);
+    } 
   },
   purchaseTicket: async function (ticket) {
     try {
