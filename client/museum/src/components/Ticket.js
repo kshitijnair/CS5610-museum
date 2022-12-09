@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Ticket = ({ tickets }) => {
+const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   const [date, setDate] = useState("");
   console.log(tickets);
   tickets.map((ticket) => {
@@ -23,6 +23,7 @@ const Ticket = ({ tickets }) => {
   };
 
   const updateTicket = async (ticket) => {
+    setTicketsUpdated(!ticketsUpdated)
     ticket.date = date;
     const options = {
       method: "PUT",

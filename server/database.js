@@ -53,6 +53,8 @@ module.exports = {
         .collection("users")
         .updateOne(filter, updatedData, options);
       console.log(user, filter);
+      console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+      console.log(result);
       return result;
     } catch (err) {
       throw new Error("Error updating user", err);
@@ -230,9 +232,9 @@ module.exports = {
         .db("museums")
         .collection("tickets")
         .find({ user : userID });
-        console.log('********************************************************')
-        console.log(userID)
-      console.log(response);
+        // console.log('********************************************************')
+        // console.log(userID)
+      // console.log(response);
       const tickets = await response.toArray();
       return tickets;
     } catch (err) {
@@ -280,6 +282,24 @@ module.exports = {
       console.log(response);
     } catch (err) {
       throw new Error("Couldn't update ticket: ", err);
+    }
+  },
+  updateEmail: async function (filter, user) {
+    try {
+      console.log("updating ->>>>>>>>", filter);
+      delete user._id;
+      const update = {
+        $set: user,
+      };
+      console.log(user);
+      const options = { upsert: false };
+      const response = await client
+        .db("museums")
+        .collection("users")
+        .updateOne(filter, update, options);
+      console.log(response);
+    } catch (err) {
+      throw new Error("Couldn't update user email: ", err);
     }
   },
 

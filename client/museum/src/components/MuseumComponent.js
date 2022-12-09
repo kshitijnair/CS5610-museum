@@ -57,8 +57,6 @@ const MuseumComponent = () => {
           onChange={(e) => setQ(e.target.value)}
       />
       </div>
-    {/* <List list={museumList} /> */}
-    {/* gotta add component for museum list results */}
       {search(museumList).map((val, key) => {
         const id = val._id;
         return (
@@ -67,7 +65,6 @@ const MuseumComponent = () => {
             }}>
               <img src="" alt="" />
               <p>{val.name}</p>
-              {/* <p>{val._id}</p> */}
               <p>Location: {val.location}</p>
             </div>
         );

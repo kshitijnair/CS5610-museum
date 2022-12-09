@@ -4,13 +4,26 @@
 }
 
 .userCard {
-    display: flex;
-    border: 2px solid white;
+    /* display: flex; */
+    /* border: 2px solid white; */
+    width: 50%;
+    margin-top: 2rem;
+    margin: 2rem auto;
+    text-align: center;
 }
 
 .userCard > div {
-    margin: 2rem;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+}
+
+.editButton {
+    background-color: white;
+    width: 22px;
+    padding: 3px;
+    border-radius: 15px;
+}
+.editButton:hover{
+    cursor: pointer;
 }
 
 .userImage {

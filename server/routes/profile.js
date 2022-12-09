@@ -7,7 +7,7 @@ const {
   getFirstUser,
   removeUser,
   editUser,
-  addUserProfile
+  updateEmail
 } = require("../database");
 
 router.get("/", (req, res) => {
@@ -56,6 +56,15 @@ router.post("/updateUser", async (req, res) => {
   console.log("**************");
   let response = await editUser({ _id: ObjectId(req.body.id) }, updatedData);
   console.log(response);
+  res.json(response);
+});
+
+router.put("/update", async (req, res) => {
+  console.log("updating user email", req.body);
+  const response = await updateEmail(
+    { _id: ObjectId(req.body["_id"]) },
+    req.body
+  );
   res.json(response);
 });
 

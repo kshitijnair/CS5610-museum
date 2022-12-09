@@ -10,16 +10,23 @@ const UserComponent = () => {
   const userDeets = useAuth0().user;
   const sub = userDeets.sub
   const userID = sub.slice(6, sub.length);
-  console.log('USERID IS: ', userID)
-  console.log(userDeets)
-  const { name, picture, email } = user;
+
+  // const { name, picture, email } = user;
   const [loadingUser, setUserLoading] = useState(true);
   const [loadingTickets, setLoadingTickets] = useState(true);
   const [tickets, setTickets] = useState([]);
   const [ticketsUpdated, setTicketsUpdated] = useState(false);
   const [ticketCount, setTicketCount] = useState(0);
+  // const [clicked, setClicked] = useState(false);
+  const [newEmail, setNewEmail] = useState(userDeets.email);
 
   let ticket = {};
+  // let mongoUserID = '';
+  // const iconPaths = {
+  //   edit: "../assets/edit.png",
+  //   check: "../assets/check.png"
+  // }
+
   const search = useLocation().search;
   if (search.length > 0) {
     ticket.id = new URLSearchParams(search).get("id");
@@ -53,6 +60,7 @@ const UserComponent = () => {
       );
 
       if (search.length > 0 && ticketCount < 1) {
+        console.log("ticket counter is: ", ticketCount)
         addNewticket(ticket)
         setTicketCount(ticketCount + 1);
       };
@@ -90,9 +98,6 @@ const UserComponent = () => {
 
   async function fetchTickets(userID) {
     console.log("FETCHING TICKETS FOR USER: ", userID)
-    const params = {
-      userID: userID
-    }
     const response = await fetch(`http://localhost:8080/tickets/tickets/${userID}`);
     const tickets = await response.json();
     return tickets;
@@ -104,24 +109,55 @@ const UserComponent = () => {
     return user;
   }
 
+  // const getImageName = () => clicked ? 'check' : 'edit'
+
+  async function editButtonClicked(newEmail) {
+    // setClicked(!clicked);
+    // console.log(newEmail);
+    // if (clicked) {
+    //   const editForm = document.body.querySelector('.editForm');
+    //   editForm.classList.toggle('.hidden');
+    //   document.body.querySelector('.editButton').setAttribute('src', '../assets/check.png')
+    // } else {
+    //   // update user email
+    // }
+    console.log(userDeets)
+    let newUser = userDeets;
+    newUser.email = newEmail;
+    newUser._id = userID;
+    
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    };
+    await fetch("http://localhost:8080/profile/update", options);
+  }
+
   const userRender = (
     <>
     <div className="userComponent">
       <div className="userCard">
-        {/* <h3>User Details:</h3> */}
         <div>
           <img className="userImage" src={userDeets.picture} alt="" />
-          <p className="userName">{userDeets.nickname}</p>
+          <p className="userName">{userDeets.nickname.toUpperCase()}</p>
         </div>
         <div className="userContact">
           <p className="userEmail">{userDeets.email}</p>
-          <p className="userPhone">{userDeets.email}</p>
+          <input type="email" name="email"  
+            placeholder="Enter new email here"
+            onChange={ (e) => setNewEmail(e.target.value) } />
+          {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
+            onClick={(e) => editButtonClicked(e.target.value)} /> */}
+          <button onClick={() => editButtonClicked(newEmail)}>Submit</button>
         </div>
       </div>
       <div>
         <br />
         <h2>Tickets:</h2>
-        <Ticket tickets={tickets} />
+        <Ticket ticketsUpdated={ticketsUpdated} setTicketsUpdated={setTicketsUpdated} tickets={tickets} />
       </div>
       </div>
     </>
