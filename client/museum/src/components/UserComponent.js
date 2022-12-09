@@ -1,6 +1,4 @@
 import React from "react";
-import Button from "./Button";
-import UserUpdateForm from "./UserUpdateForm";
 import { useState, useEffect } from "react";
 import Ticket from "./Ticket";
 import { useLocation } from "react-router-dom";
@@ -9,11 +7,14 @@ import Loading from "./loading";
 
 const UserComponent = () => {
   const [user, setUser] = useState(useAuth0());
+  const userDeets = useAuth0().user;
+  console.log(userDeets)
   const { name, picture, email } = user;
   const [loadingUser, setUserLoading] = useState(true);
   const [loadingTickets, setLoadingTickets] = useState(true);
   const [tickets, setTickets] = useState([]);
   const [ticketsUpdated, setTicketsUpdated] = useState(false);
+  const [ticketCount, setTicketCount] = useState(0);
 
   let ticket = {};
   const search = useLocation().search;
@@ -35,7 +36,23 @@ const UserComponent = () => {
       setUser(response);
       setUserLoading(false);
       console.log("ticketticketticket", ticket);
-      if (search.length > 0) addNewticket(ticket);
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(userDeets),
+      };
+      const repsonse = await fetch(
+        "http://localhost:8080/profile/addUser",
+        options
+      );
+
+      if (search.length > 0 && ticketCount < 1) {
+        addNewticket(ticket)
+        setTicketCount(ticketCount + 1);
+      };
     }
     getUser();
 
@@ -81,15 +98,16 @@ const UserComponent = () => {
 
   const userRender = (
     <>
+    <div className="userComponent">
       <div className="userCard">
-        <h3>User Details:</h3>
+        {/* <h3>User Details:</h3> */}
         <div>
-          <img className="userImage" src={picture} alt="" />
-          <p className="userName">{name}</p>
+          <img className="userImage" src={userDeets.picture} alt="" />
+          <p className="userName">{userDeets.nickname}</p>
         </div>
         <div className="userContact">
-          <p className="userEmail">{email}</p>
-          <p className="userPhone">{user.phone}</p>
+          <p className="userEmail">{userDeets.email}</p>
+          <p className="userPhone">{userDeets.email}</p>
         </div>
       </div>
       <div>
@@ -97,31 +115,14 @@ const UserComponent = () => {
         <h2>Tickets:</h2>
         <Ticket tickets={tickets} />
       </div>
+      </div>
     </>
   );
 
   return (
     <>{loadingTickets ? <h1>Loading data...</h1> : userRender}</>
-    // <div>
-    //   <h4>
-    //     <p>Name: {user.name}</p>
-    //     <p>Email: {user.email}</p>
-    //     <p>Phone: {user.phone}</p>
-    //     <p id="id" style={{ display: "none" }}>
-    //       {user._id}
-    //     </p>
-    //   </h4>
-    //   <Button text="See First User" onClick={getUser} />
-    //   <Button text="Delete Current User" onClick={() => removeUser(user._id)} />
-    //   {/* // add form to add user */}
-    //   <h5>---------update this user here---------</h5>
-    //   <UserUpdateForm id={user} />
-    //   <>{userRender}</>
-    // </div>
   );
 };
-
-// export default UserComponent;
 
 export default withAuthenticationRequired(UserComponent, {
   onRedirecting: () => <Loading />,

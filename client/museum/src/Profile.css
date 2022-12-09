@@ -1,0 +1,18 @@
+.userComponent {
+    width: 70%;
+    margin: auto;
+}
+
+.userCard {
+    display: flex;
+    border: 2px solid white;
+}
+
+.userCard > div {
+    margin: 2rem;
+    border: 1px solid white;
+}
+
+.userImage {
+    border-radius: 2rem;
+}

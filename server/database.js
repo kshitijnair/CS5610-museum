@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
@@ -30,10 +31,13 @@ module.exports = {
   },
   addUserProfile: async function (user) {
     try {
+      user._id = user.sub;
+      delete user.sub;
       const result = await client
         .db("museums")
         .collection("users")
         .insertOne(user);
+      console.log("added user with repsonse: ", response)
     } catch (err) {
       throw new Error("Couldn't add new user: ", err);
     }

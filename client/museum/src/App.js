@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import "./Home.css";
+import "./Profile.css";
 import "./MuseumDetails.css";
 import AuthNav from "./components/auth-nav";
 
@@ -27,7 +28,7 @@ function App() {
               <Link to="/museums">Museums</Link>
             </li>
             <li>
-              <Link to="/user">Profile</Link>
+              <Link to="/user">My Profile</Link>
             </li>
           </ul>
           <AuthNav />

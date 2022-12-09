@@ -44,7 +44,9 @@ const Museum = () => {
     const museumRender = (
         <div className='museumContainer'>
             <div className='museumCard'>
-                <img src="" alt="" />
+                <div>
+                    <img className='museumImage' src={museum.image} alt="" />   
+                </div>
                 <h2>{museum.name}</h2>
                 <p>{museum.location}</p>
                 <p>{museum.description}</p>
