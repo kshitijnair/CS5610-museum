@@ -35,6 +35,8 @@ const UserComponent = () => {
     ticket.name = new URLSearchParams(search).get("name");
     ticket.date = new URLSearchParams(search).get("date");
     ticket.time = new URLSearchParams(search).get("time");
+    ticket.longitude = new URLSearchParams(search).get("longitude");
+    ticket.latitude = new URLSearchParams(search).get("latitude");
     console.log("new ticket: ", ticket);
   }
 

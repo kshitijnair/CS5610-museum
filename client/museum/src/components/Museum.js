@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import  GoogleMapsComponent from "./GoogleMapsComponent.js"
 
 const Museum = () => {
     const [isLoading, setLoading] = useState(true);
@@ -39,7 +38,7 @@ const Museum = () => {
     }
 
     function buyTicket(id, number, ticketPrice) {
-        navigate(`/user/ticket?id=${id}&name=${museum.name}&number=${number}&price=${ticketPrice}&date=${date}&time=4PM&`)
+        navigate(`/user/ticket?id=${id}&name=${museum.name}&number=${number}&price=${ticketPrice}&date=${date}&time=4PM&latitude=${museum.latitude}&longitude=${museum.longitude}`)
     }
 
     function ParseDMS(input) {

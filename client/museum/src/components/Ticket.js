@@ -39,6 +39,15 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
     );
   };
 
+  function ParseDMS(coordinates) {
+    console.log(typeof coordinates)
+    const split = coordinates.split('°');
+    console.log(split[1][1])
+    if(split[1][1] === `S` || split[1][1] === `W`)
+      return '-' + split[0];
+    return split[0];
+  }
+
   const ticketRender = (
     <ul>
       {tickets.map((ticket) => (
@@ -57,7 +66,11 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
                 <p>Time: {ticket.time}</p>
               </div>
               <p>Total: ${ticket.price * ticket.number}</p>
+              {/* <p>{ParseDMS(ticket.latitude)}</p>
+              <p>{ParseDMS(ticket.longitude)}</p> */}
             </div>
+            <button onClick={() => { window.open(`https://www.google.com/maps/search/?api=1&query=${ParseDMS(ticket.latitude)}%2C${ParseDMS(ticket.longitude)}`)}}>Get Directions</button>
+            {/* <a target="_blank" rel="noreferrer noopener" href={}>Get Directions</a><br /> */}
             <button onClick={() => deleteBooking(ticket.id)}>
               Delete Booking
             </button>
