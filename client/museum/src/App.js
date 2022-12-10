@@ -3,6 +3,7 @@ import "./App.css";
 import "./Home.css";
 import "./Profile.css";
 import "./MuseumDetails.css";
+import "./MuseumSearch.css";
 import AuthNav from "./components/auth-nav";
 
 // import Navigation from "./components/Navigation";

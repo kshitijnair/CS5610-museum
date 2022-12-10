@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import  GoogleMapsComponent from "./GoogleMapsComponent.js"
 
 const Museum = () => {
     const [isLoading, setLoading] = useState(true);
@@ -66,6 +67,7 @@ const Museum = () => {
                 <br />
                 <button onClick={() => buyTicket(id, number, ticketPrice)}>Purchase</button>
             </div>
+        <GoogleMapsComponent coordinates={[{latitude: museum.latitude}, {longitude:museum.longitude}]} />
         </div>
     )
 

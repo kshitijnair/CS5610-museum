@@ -8,6 +8,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   });
 
   const deleteBooking = async (id) => {
+    setTicketsUpdated(!ticketsUpdated)
     console.log("ID IS: ---------", id);
     const options = {
       method: "DELETE",

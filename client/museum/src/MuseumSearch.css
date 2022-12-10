@@ -1,0 +1,48 @@
+.searchBar {
+    margin: 1.5rem auto;
+    width: 25%;
+    font-size: 18px;
+    padding: 0.5rem;
+    display: block;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.museumItem {
+    width: 60%;
+    /* border: 1px solid white; */
+    margin: 3rem auto;
+    display: flex;
+    /* background-color: rgb(193, 193, 193); */
+    background: rgb(230,208,182);
+    background: linear-gradient(90deg, rgba(230,208,182,1) 40%, rgba(8,8,8,1) 100%);
+    padding: 2rem;
+    border-radius: 50px;
+    color: black;
+}
+
+.museumItem:hover {
+    cursor: pointer;
+}
+
+.museumItemImage {
+    float: left;
+    width:  200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 5px 5px 15px rgb(116, 116, 116);
+}
+
+.museumItemInfo {
+    margin: 2rem 3rem;
+}
+
+.museumItemName {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.museumItemLocation {
+    font-weight: 500;
+}

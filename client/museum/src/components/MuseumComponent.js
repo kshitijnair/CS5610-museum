@@ -51,8 +51,9 @@ const MuseumComponent = () => {
     <div>
       <div>
       <input
+          className="searchBar"
           type="text"
-          placeholder="search..."
+          placeholder="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
       />
@@ -60,12 +61,16 @@ const MuseumComponent = () => {
       {search(museumList).map((val, key) => {
         const id = val._id;
         return (
-            <div className="museumCard" key={id} onClick={ () => {
+            <div className="museumItem" key={id} onClick={ () => {
               selectMuseum(id);
             }}>
-              <img src="" alt="" />
-              <p>{val.name}</p>
-              <p>Location: {val.location}</p>
+              <div>
+                <img className="museumItemImage" src={val.image} alt="" />
+              </div>
+              <div className="museumItemInfo">
+                <p className="museumItemName">{val.name}</p>
+                <p className="museumItemLocation">Location: {val.location}</p>
+              </div>
             </div>
         );
       })}
