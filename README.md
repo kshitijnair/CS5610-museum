@@ -2,66 +2,89 @@
 
 ### By Kshitij Nair and Navneet Ratnakirti:
 
-#### Iteration 2:
-We have created and deployed the front-end and back-end of the museum website. For the same, we have hosted two separate deployments for the client and server side, each on two web services online on Render.
+#### Iteration 3:
+We have created and deployed the front-end and back-end of the museum website. For the same, we have hosted two servers for client and server side, each on two web services online on Render.
 
 The client-side page (front-end):
-> https://museum-client.onrender.com/
+> https://museum-client-jh47.onrender.com/
 
 The server-side page (back-end):
 > https://museum-server-ae4u.onrender.com/
 
 The first step is to run the server-side link of Render and wait for the page to load. After a few seconds it should say on the webpage “NodeJS server running...”. This would signify that the MongoDB server is up and running. Only then we should launch the client-side link hosted on Render.
 
-In the current state of the deployment, we have a main branch and an auth0 branch. The main branch is what is currently deployed on the client-side on Render. The difference between the two branches is that in auth0 we have implemented the Login/Logout and Profile functionality and in the main we have all the CRUD operations for booking tickets. As the implementation for auth0 is required for the 3rd Iteration and user authentication is directly linked to the Profile page, we have chosen to let any anonymous user to Create, Read, Update and Delete the tickets they have booked. In the 3rd Iteration, user authentication would be merged with the ticket booking system.
+The project website requirements have been implemented as follows:
 
-Rest all functionalities has been implemented as follows
+#### Home Page:
+1. It is the landing page of our web application. It is the first page users should see when they visit our website.
+2. It is mapped to the root context ("/").
+3. It displays dynamic content to users. This is seen as it shows the list of popular museums getting more number of bookings on the Home page.
 
-1. Home page: 
-It has the Navigation bar which itself is on every other page. It shows the list of popular museum, and clicking on which would take them to the Details page where they can book the tickets
+#### Log in/Register page:
+1. The login and register page allows users to create a new account with the website and then log in later on.
+2. It forces login only when identity is required. This happens if clicked on My Profile page directly without logging in or if a ticket is purchased without logging in.
+3. An anonymous user can browse for available museums where a ticket can be booked, for which the anonymous user then needs to sign up.
 
-2. Log in/Register page:
-User authentication has been implemented where you can Signin/Signup using the login button on the top-right. If a user directly clicks on the Profile tab before logging in, it will redirect to the Signin/Signup page of Auth0. (Please note, this functionality is only implemented on the auth0 branch on our GitHub repo and not on main)
+#### Profile page:
+1. Users can see all the information about themselves and the tickets they have booked.
+2. The logged in user can update their email ID registered with the website from here.
+3. The logged in user can update or cancel the tickets booked with the website from this page.
 
-3. Profile page:
-This page allows the user to do Create(Book tickets for a particular museum), Read(See the list of booked tickets), Update(Change the ticket details like date/time) and Delete(Cancel any tickets they have booked) operations. Please note if you have booked any tickets, please REFRESH the Profile page to see the changes. Even after clicking the delete button, please refresh the page to see the changes.
+#### Search/Search Results page:
+1. This page can be found under the Museums tab on the Navigation bar.
+2. When any character is entered, it dynamically searches the Museums Database and returns the matches, if any.
 
-4. Search/Search Results page:
-This page is on the Museums tab on the navigation bar. It has a search bar, in which one can start typing the name of the museum and the museums matching the search team would be populated on the page. From that they can click on the museum they want to visit/book, which in turn would take them to the Details page.
+#### Details page:
+1. The details page allows users to view a detailed view of the search result. They can see more information about the museum when they click on the search result.
+2. The user is allowed to book multiple tickets, select dates and make a purchase.
+3. If the user is not logged in while purchasing, then redirect to the login page.
 
-5. Details page:
-After clicking on any Museum, it will take you to this page. The user can view the searched museum from the Search page and can book tickets after entering the ticket information. This acts as a Museum Details or Ticket booking page for the website.
-
+#### External Web API requirements:
+After the ticket is booked, you can click on the Get Directions button to navigate to the Museums location using the Google Maps API.
 
 ### Contributions:
 
 Kshitij:
-1. Created Navigation Components 
-2. Created hooks for components to load and render data
-3. Designed logical flow of the application
+1. Linked Auth0 Login to MongoDB
+2. Added CSS to all pages
+3. Added external API to Google Maps
+4. Created and cleaned all routes
+5. Added Ticketing for individual users with Ticket Rendering 
 
 Navneet:
-1. Added navigation tabs on the Home page to go to Search, Profile or Details page
-2. Added user authentication from Auth0 to the website (auth0 branch)
-3. Implemented the Login/Logout button along with its connection to the profile page
-
-
-![image](https://user-images.githubusercontent.com/44190671/204997512-d78e1a18-7056-4c58-b9f3-98327a1d98b1.png)
-
-
-The Search Page to find any museum. By default it has all the museums listed.
+1. Linked Auth0 implementation to the core functionality on the website
+2. Fixed the double booking issue on React Dev environment
+3. Deployed Production Build of client side on Render Static Site domain
+4. Updated MongoDB database with additional documents
 
 
 
-![image](https://user-images.githubusercontent.com/44190671/204997922-d437209d-94bf-4b13-aac3-25d87e5a45c2.png)
+![image](https://user-images.githubusercontent.com/44190671/206837909-65cef62e-a71e-40ce-815d-3f4f4b1dc344.png)
 
-Ticket booking after clicking on the searched museum. Click on Purchase to confirm.
+The Home Page of the Museum Website
 
 
-![image](https://user-images.githubusercontent.com/44190671/204998397-1eb57a2f-2735-40ce-9b6f-c629153567b3.png)
 
-Multiple tickets booked by the user.
+![image](https://user-images.githubusercontent.com/44190671/206837935-3ab45e7e-02ca-452d-8bf3-1a7d87a2633f.png)
 
-![image](https://user-images.githubusercontent.com/44190671/204998440-f1dff454-e29a-4d6e-a0bb-f55df1e450e9.png)
+The Search Page of the Museum Website
 
-Ticket list of user after a ticket is deleted
+
+![image](https://user-images.githubusercontent.com/44190671/206837972-ed14f860-5d41-4bec-a724-d93203589bb7.png)
+
+Login/Signup Page for the Museum Website
+
+
+![image](https://user-images.githubusercontent.com/44190671/206838025-d9d5b335-b159-48ac-a214-338c5960f603.png)
+
+Purchasing Tickets from Details Page
+
+
+![image](https://user-images.githubusercontent.com/44190671/206838069-edf05eb4-4849-4eb6-9cbf-e140faf37beb.png)
+
+Ticket added to the User Profile
+
+![image](https://user-images.githubusercontent.com/44190671/206838098-818e27e9-cbf0-49f6-94d5-88b4c6d2a175.png)
+
+Google Maps API when clicked on Get Directions button
+
