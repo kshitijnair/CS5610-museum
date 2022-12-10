@@ -42,6 +42,26 @@ const Museum = () => {
         navigate(`/user/ticket?id=${id}&name=${museum.name}&number=${number}&price=${ticketPrice}&date=${date}&time=4PM&`)
     }
 
+    function ParseDMS(input) {
+        var parts = input.split(/[^\d\w\.]+/);    
+        var lat = ConvertDMSToDD(parts[0], parts[2], parts[3], parts[4]);
+        var lng = ConvertDMSToDD(parts[5], parts[7], parts[8], parts[9]);
+        console.log("Coordinated in DDM are: ", lat + ',' + lng);
+        return {
+            Latitude : lat,
+            Longitude: lng,
+            Position : lat + ',' + lng
+        }
+    }
+    
+    function ConvertDMSToDD(degrees, minutes, seconds, direction) {   
+        var dd = Number(degrees) + Number(minutes)/60 + Number(seconds)/(60*60);
+        if (direction == "S" || direction == "W") {
+            dd = dd * -1;
+        }
+        return dd;
+    }
+
     const museumRender = (
         <div className='museumContainer'>
             <div className='museumCard'>
@@ -66,8 +86,12 @@ const Museum = () => {
                 <p className='ticketPrice'>${ticketPrice * number}</p>
                 <br />
                 <button onClick={() => buyTicket(id, number, ticketPrice)}>Purchase</button>
+                <p>{museum.latitude}</p>
+                <p>{museum.longitude}</p>
             </div>
-        <GoogleMapsComponent coordinates={[{latitude: museum.latitude}, {longitude:museum.longitude}]} />
+        {/* <GoogleMapsComponent coordinates={[{latitude: museum.latitude}, {longitude:museum.longitude}]} /> */}
+        {/* <a href=
+            {`https://www.google.com/maps/search/?api=1&query=${ParseDMS(museum.latitude)}%2C${ParseDMS(museum.longitude)}`}></a> */}
         </div>
     )
 

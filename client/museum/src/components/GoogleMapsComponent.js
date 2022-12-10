@@ -3,6 +3,8 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 
 const GoogleMapsComponent = ({ coordinates }) => {
 
+    console.log("GOOGLE MAPS API IS: ", process.env.REACT_APP_GOOGLE_MAPS_API)
+
     const containerStyle = {
         width: "60%",
         height: "250px"
@@ -14,7 +16,7 @@ const GoogleMapsComponent = ({ coordinates }) => {
     }
 
     const { isloaded } = useJsApiLoader({
-        googleMapsApiKey: process.env.GOOGLE_MAPS_API
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API
     })
 
     const options = {

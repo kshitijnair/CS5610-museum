@@ -45,8 +45,6 @@ const MuseumComponent = () => {
     navigate(`/museums/${key}`)
   }
 
-  // const selectMuseum = useCallback(() => navigate(`/id`, {replace: true}), [navigate]);
-
   const renderMuseum = (
     <div>
       <div>
