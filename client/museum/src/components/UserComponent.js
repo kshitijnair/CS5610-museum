@@ -7,7 +7,7 @@ import Loading from "./loading";
 
 const UserComponent = () => {
   const [user, setUser] = useState(useAuth0());
-  const userDeets = useAuth0().user;
+  const [userDeets, setUserDeets] = useState(useAuth0().user);
   const sub = userDeets.sub
   const userID = sub.slice(6, sub.length);
 
@@ -125,6 +125,8 @@ const UserComponent = () => {
     let newUser = userDeets;
     newUser.email = newEmail;
     newUser._id = userID;
+
+    setUserDeets(userDeets => ({...userDeets, email: newEmail}))
     
     const options = {
       method: "PUT",
