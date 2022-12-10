@@ -8,7 +8,7 @@ import Loading from "./loading";
 const UserComponent = () => {
   const [user, setUser] = useState(useAuth0());
   const [userDeets, setUserDeets] = useState(useAuth0().user);
-  const sub = userDeets.sub
+  const sub = userDeets.sub;
   const userID = sub.slice(6, sub.length);
 
   // const { name, picture, email } = user;
@@ -57,15 +57,15 @@ const UserComponent = () => {
         body: JSON.stringify(userDeets),
       };
       const repsonse = await fetch(
-        "http://localhost:8080/profile/addUser",
+        "https://museum-server-ae4u.onrender.com/profile/addUser",
         options
       );
 
       if (search.length > 0 && ticketCount < 1) {
-        console.log("ticket counter is: ", ticketCount)
-        addNewticket(ticket)
+        console.log("ticket counter is: ", ticketCount);
+        addNewticket(ticket);
         setTicketCount(ticketCount + 1);
-      };
+      }
     }
     getUser();
 
@@ -81,7 +81,7 @@ const UserComponent = () => {
         body: JSON.stringify(ticket),
       };
       const repsonse = await fetch(
-        "http://localhost:8080/tickets/purchase",
+        "https://museum-server-ae4u.onrender.com/tickets/purchase",
         options
       );
     }
@@ -99,14 +99,18 @@ const UserComponent = () => {
   }, [ticketsUpdated]);
 
   async function fetchTickets(userID) {
-    console.log("FETCHING TICKETS FOR USER: ", userID)
-    const response = await fetch(`http://localhost:8080/tickets/tickets/${userID}`);
+    console.log("FETCHING TICKETS FOR USER: ", userID);
+    const response = await fetch(
+      `https://museum-server-ae4u.onrender.com/tickets/tickets/${userID}`
+    );
     const tickets = await response.json();
     return tickets;
   }
 
   async function fetchUser() {
-    const response = await fetch("http://localhost:8080/profile/getFirstUser");
+    const response = await fetch(
+      "https://museum-server-ae4u.onrender.com/profile/getFirstUser"
+    );
     const user = await response.json();
     return user;
   }
@@ -123,13 +127,13 @@ const UserComponent = () => {
     // } else {
     //   // update user email
     // }
-    console.log(userDeets)
+    console.log(userDeets);
     let newUser = userDeets;
     newUser.email = newEmail;
     newUser._id = userID;
 
-    setUserDeets(userDeets => ({...userDeets, email: newEmail}))
-    
+    setUserDeets((userDeets) => ({ ...userDeets, email: newEmail }));
+
     const options = {
       method: "PUT",
       headers: {
@@ -137,39 +141,47 @@ const UserComponent = () => {
       },
       body: JSON.stringify(newUser),
     };
-    await fetch("http://localhost:8080/profile/update", options);
+    await fetch(
+      "https://museum-server-ae4u.onrender.com/profile/update",
+      options
+    );
   }
 
   const userRender = (
     <>
-    <div className="userComponent">
-      <div className="userCard">
-        <div>
-          <img className="userImage" src={userDeets.picture} alt="" />
-          <p className="userName">{userDeets.nickname.toUpperCase()}</p>
-        </div>
-        <div className="userContact">
-          <p className="userEmail">{userDeets.email}</p>
-          <input type="email" name="email"  
-            placeholder="Enter new email here"
-            onChange={ (e) => setNewEmail(e.target.value) } />
-          {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
+      <div className="userComponent">
+        <div className="userCard">
+          <div>
+            <img className="userImage" src={userDeets.picture} alt="" />
+            <p className="userName">{userDeets.nickname.toUpperCase()}</p>
+          </div>
+          <div className="userContact">
+            <p className="userEmail">{userDeets.email}</p>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter new email here"
+              onChange={(e) => setNewEmail(e.target.value)}
+            />
+            {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
             onClick={(e) => editButtonClicked(e.target.value)} /> */}
-          <button onClick={() => editButtonClicked(newEmail)}>Submit</button>
+            <button onClick={() => editButtonClicked(newEmail)}>Submit</button>
+          </div>
         </div>
-      </div>
-      <div>
-        <br />
-        <h2>Tickets:</h2>
-        <Ticket ticketsUpdated={ticketsUpdated} setTicketsUpdated={setTicketsUpdated} tickets={tickets} />
-      </div>
+        <div>
+          <br />
+          <h2>Tickets:</h2>
+          <Ticket
+            ticketsUpdated={ticketsUpdated}
+            setTicketsUpdated={setTicketsUpdated}
+            tickets={tickets}
+          />
+        </div>
       </div>
     </>
   );
 
-  return (
-    <>{loadingTickets ? <h1>Loading data...</h1> : userRender}</>
-  );
+  return <>{loadingTickets ? <h1>Loading data...</h1> : userRender}</>;
 };
 
 export default withAuthenticationRequired(UserComponent, {

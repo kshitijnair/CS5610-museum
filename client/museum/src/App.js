@@ -19,7 +19,7 @@ function App() {
     <>
       {/* <Navigation ></Navigation> */}
       <div className="container">
-        <h1 className="title">MUSEEUM </h1>
+        <h1 className="title">MUSEUM WEBSITE</h1>
         <nav className="nav">
           <ul>
             <li>
