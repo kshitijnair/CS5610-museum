@@ -1,5 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./Home.css";
+import "./Profile.css";
+import "./MuseumDetails.css";
+import "./MuseumSearch.css";
+import AuthNav from "./components/auth-nav";
 
 // import Navigation from "./components/Navigation";
 import UserComponent from "./components/UserComponent";
@@ -10,32 +15,32 @@ import Museum from "./components/Museum";
 import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
-
   return (
     <>
       {/* <Navigation ></Navigation> */}
       <div className="container">
-        <h1 className="title">Museum </h1>
+        <h1 className="title">MUSEEUM </h1>
         <nav className="nav">
           <ul>
             <li>
-              <Link to = "/">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to = '/museums'>Museums</Link>
+              <Link to="/museums">Museums</Link>
             </li>
             <li>
-              <Link to = '/user'>Profile</Link>
+              <Link to="/user">My Profile</Link>
             </li>
           </ul>
+          <AuthNav />
         </nav>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/museums" element={<MuseumComponent />} />
-            <Route path="/museums/:id" element={<Museum />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/user/*" element={<UserComponent />}></Route>
-            {/* <Route path="/user/ticket/id/:id/number/:number/price/:price" element={<UserComponent />}></Route> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/museums" element={<MuseumComponent />} />
+          <Route path="/museums/:id" element={<Museum />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/user/*" element={<UserComponent />}></Route>
+          {/* <Route path="/user/ticket/id/:id/number/:number/price/:price" element={<UserComponent />}></Route> */}
         </Routes>
       </div>
     </>

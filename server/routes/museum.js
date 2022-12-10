@@ -5,7 +5,7 @@ const { getFirstMuseum } = require("../database")
 const { ObjectId } = require('mongodb');
 
 router.get("/", (req, res) => {
-  res.send("Hello DetailsPage");
+  res.send("Hello Museum Page");
 });
 
 router.get('/:id', async (req, res) => {

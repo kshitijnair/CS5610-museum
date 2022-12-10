@@ -31,33 +31,66 @@ const Museum = () => {
 
     async function fetchMuseum(id) {
         const response = await fetch(
-            `https://museum-server-ae4u.onrender.com/museum/${id}`
+            `http://localhost:8080/museum/${id}`
         )
         const museumData = await response.json();
         return museumData;
     }
 
     function buyTicket(id, number, ticketPrice) {
-        navigate(`/user/ticket?id=${id}&name=${museum.name}&number=${number}&price=${ticketPrice}&date=${date}&time=4PM&`)
+        navigate(`/user/ticket?id=${id}&name=${museum.name}&number=${number}&price=${ticketPrice}&date=${date}&time=4PM&latitude=${museum.latitude}&longitude=${museum.longitude}`)
+    }
+
+    function ParseDMS(input) {
+        var parts = input.split(/[^\d\w\.]+/);    
+        var lat = ConvertDMSToDD(parts[0], parts[2], parts[3], parts[4]);
+        var lng = ConvertDMSToDD(parts[5], parts[7], parts[8], parts[9]);
+        console.log("Coordinated in DDM are: ", lat + ',' + lng);
+        return {
+            Latitude : lat,
+            Longitude: lng,
+            Position : lat + ',' + lng
+        }
+    }
+    
+    function ConvertDMSToDD(degrees, minutes, seconds, direction) {   
+        var dd = Number(degrees) + Number(minutes)/60 + Number(seconds)/(60*60);
+        if (direction == "S" || direction == "W") {
+            dd = dd * -1;
+        }
+        return dd;
     }
 
     const museumRender = (
-        <div>
+        <div className='museumContainer'>
             <div className='museumCard'>
-                <img src="" alt="" />
+                <div>
+                    <img className='museumImage' src={museum.image} alt="" />   
+                </div>
                 <h2>{museum.name}</h2>
                 <p>{museum.location}</p>
                 <p>{museum.description}</p>
             </div>
             <div className='bookingCard'>
                 <p>Buy Tickets:</p>
-                <p>Price: ${ticketPrice * number}</p>
-                <input type="number" name="number" id="number" value={number} 
+                <label htmlFor="number">No. of Tickets</label>
+                <input className='number' type="number" name="number" id="number" value={number} 
                     onChange={(e) => setNumber(e.target.value)}/>
-                <input type="date" name="date" id="date" 
+                    <br />
+                <label htmlFor="date">Date of Visit</label>
+                <input className='date' type="date" name="date" id="date" 
                     onChange={(e) => setDate(e.target.value)}/>
+                <br /><br />
+                <p>Price:</p>
+                <p className='ticketPrice'>${ticketPrice * number}</p>
+                <br />
                 <button onClick={() => buyTicket(id, number, ticketPrice)}>Purchase</button>
+                <p>{museum.latitude}</p>
+                <p>{museum.longitude}</p>
             </div>
+        {/* <GoogleMapsComponent coordinates={[{latitude: museum.latitude}, {longitude:museum.longitude}]} /> */}
+        {/* <a href=
+            {`https://www.google.com/maps/search/?api=1&query=${ParseDMS(museum.latitude)}%2C${ParseDMS(museum.longitude)}`}></a> */}
         </div>
     )
 

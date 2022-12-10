@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
@@ -22,7 +23,7 @@ module.exports = {
       // const result = await client.db("museums").collection("users").findOne(filter);
       const user = await result.toArray();
       console.log("----------------User----------------");
-      console.log(user);
+      // console.log(user);
       return user;
     } catch (err) {
       throw new Error("User doesn't exist!");
@@ -30,10 +31,13 @@ module.exports = {
   },
   addUserProfile: async function (user) {
     try {
+      user._id = user.sub;
+      delete user.sub;
       const result = await client
         .db("museums")
         .collection("users")
         .insertOne(user);
+      console.log("added user with repsonse: ", response)
     } catch (err) {
       throw new Error("Couldn't add new user: ", err);
     }
@@ -49,6 +53,8 @@ module.exports = {
         .collection("users")
         .updateOne(filter, updatedData, options);
       console.log(user, filter);
+      console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+      console.log(result);
       return result;
     } catch (err) {
       throw new Error("Error updating user", err);
@@ -62,7 +68,7 @@ module.exports = {
       // const result = await client.db("museums").collection("users").findOne(filter);
       const user = await result.toArray();
       console.log("----------------User----------------");
-      console.log(user[1]);
+      // console.log(user[1]);
       return user[0];
     } catch (error) {
       throw new Error(error);
@@ -84,7 +90,7 @@ module.exports = {
       const result = await client.db("museums").collection("museums").find();
       const museums = await result.toArray();
       console.log("----------------Museums----------------");
-      console.log(museums);
+      // console.log(museums);
       return museums;
     } catch (error) {
       throw new Error(error);
@@ -125,11 +131,14 @@ module.exports = {
       //// works for ALL museums
       //// const result = await client.db("museums").collection("museums").find();
       // works for only ONE museum
-      const result = await client.db("museums").collection("museums").find(object);
-      console.log(result)
+      const result = await client
+        .db("museums")
+        .collection("museums")
+        .find(object);
+      // console.log(result);
       const museums = await result.toArray();
       console.log("----------------Museum----------------");
-      console.log(museums[0]);
+      // console.log(museums[0]);
       return museums[0];
     } catch (error) {
       throw new Error(error);
@@ -211,11 +220,26 @@ module.exports = {
       const result = await client.db("museums").collection("tickets").find();
       const tickets = await result.toArray();
       console.log("----------------tickets----------------");
-      console.log(tickets[1]);
+      // console.log(tickets[1]);
       return tickets;
     } catch (error) {
       throw new Error(error);
     }
+  },
+  getTicketsForUser: async function (userID) {
+    try {
+      const response = await client
+        .db("museums")
+        .collection("tickets")
+        .find({ user : userID });
+        // console.log('********************************************************')
+        // console.log(userID)
+      // console.log(response);
+      const tickets = await response.toArray();
+      return tickets;
+    } catch (err) {
+      throw new Error("Error - Couldn't find tickets: ", err);
+    } 
   },
   purchaseTicket: async function (ticket) {
     try {
@@ -230,16 +254,54 @@ module.exports = {
   },
   deleteTicket: async function (id) {
     try {
-      console.log("deleting ->>>>>>>>",id)
+      console.log("deleting ->>>>>>>>", id);
       const response = await client
         .db("museums")
         .collection("tickets")
-        .deleteOne({id: id});
+        .deleteOne({ id: id });
       console.log(response);
     } catch (err) {
       throw new Error("Couldn't delete ticket: ", err);
     }
-  }
+  },
+  updateTicket: async function (filter, ticket) {
+    try {
+      console.log("updating ->>>>>>>>", filter);
+      delete ticket._id;
+      const update = {
+        $set: ticket,
+      };
+
+      console.log(ticket);
+
+      const options = { upsert: false };
+      const response = await client
+        .db("museums")
+        .collection("tickets")
+        .updateOne(filter, update, options);
+      console.log(response);
+    } catch (err) {
+      throw new Error("Couldn't update ticket: ", err);
+    }
+  },
+  updateEmail: async function (filter, user) {
+    try {
+      console.log("updating ->>>>>>>>", filter);
+      delete user._id;
+      const update = {
+        $set: user,
+      };
+      console.log(user);
+      const options = { upsert: false };
+      const response = await client
+        .db("museums")
+        .collection("users")
+        .updateOne(filter, update, options);
+      console.log(response);
+    } catch (err) {
+      throw new Error("Couldn't update user email: ", err);
+    }
+  },
 
   // addToDB: async function (task) {
   //     try {

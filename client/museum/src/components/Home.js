@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <>
       <div className="homePanel">
-        <p className="home-p">Welcome to our Museum Selection</p>
-        <p className="home-p">Popular Museums</p>
+        <h2 className="home-p">Welcome to our Museum Selection</h2>
+        <h3 className="home-p">Popular Museums</h3>
       </div>
       <TopMuseums />
     </>

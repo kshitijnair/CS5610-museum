@@ -1,42 +1,53 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TopMuseums = () => {
     const [isLoading, setLoading] = useState(true);
-    const [list, setList] = useState([
-        {
-            name:'Museum 1',
-            description: 'museum 1 lorem epsum'
-        },
-        {
-            name:'Museum 2',
-            description: 'museum 2 lorem epsum'
-        },
-        {
-            name:'Museum 3',
-            description: 'museum 3 lorem epsum'
-        }
-    ])
+    const [list, setList] = useState([])
+
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         async function getTopMuseums() {
-            const data = fetchTopMuseums();
-            // const topMuseums = data.json();
-            setList(data);
+            const data = await fetchTopMuseums();
+            // const topMuseums = data.json();\
+            console.log("data----", data)
+            const top = Object.entries(data).slice(0,3).map(item => item[1]);
+            setList(top)
             setLoading(false);
+
         }
-        // get list of all museums and use setList to set the view of top museums
         getTopMuseums();
     }, [])
 
     async function fetchTopMuseums() {
-        return list;
+        const response = await fetch(
+            "http://localhost:8080/home/museums"
+            );
+        const museumList = await response.json();
+        return museumList;
     }
+
+    function selectMuseum(key) {
+        console.log('key is:', key)
+        navigate(`/museums/${key}`)
+      }
 
     const lists = (
     <div>
-        {/* <List list = {list}/> */}
-        oops
+        {list.map((val, key) => {
+            const id = val._id;
+            return (
+                <div className="museumCard" key={id} onClick={ () => {
+                selectMuseum(id);
+                }}>
+                <img className='museumImg' src="" alt="" />
+                <p className='museumName'>{val.name}</p>
+                <p className='museumLocation'>Located in: {val.location}</p>
+                </div>
+            );
+        })}
     </div>
     )
 

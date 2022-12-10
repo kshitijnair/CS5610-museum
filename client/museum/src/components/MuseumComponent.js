@@ -1,7 +1,4 @@
-import React, {useCallback} from "react";
-import Header from "./Header";
-import Button from "./Button";
-import List from "./List";
+import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 
@@ -25,7 +22,7 @@ const MuseumComponent = () => {
   async function fetchMuseums() {
     console.log("fetching museums...");
     const response = await fetch(
-      "https://museum-server-ae4u.onrender.com/home/museums"
+      "http://localhost:8080/home/museums"
     );
     const museumList = await response.json();
     return museumList;
@@ -48,30 +45,30 @@ const MuseumComponent = () => {
     navigate(`/museums/${key}`)
   }
 
-  // const selectMuseum = useCallback(() => navigate(`/id`, {replace: true}), [navigate]);
-
   const renderMuseum = (
     <div>
       <div>
       <input
+          className="searchBar"
           type="text"
-          placeholder="search..."
+          placeholder="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
       />
       </div>
-    {/* <List list={museumList} /> */}
-    {/* gotta add component for museum list results */}
       {search(museumList).map((val, key) => {
         const id = val._id;
         return (
-            <div className="museumCard" key={id} onClick={ () => {
+            <div className="museumItem" key={id} onClick={ () => {
               selectMuseum(id);
             }}>
-              <img src="" alt="" />
-              <p>{val.name}</p>
-              {/* <p>{val._id}</p> */}
-              <p>Location: {val.location}</p>
+              <div>
+                <img className="museumItemImage" src={val.image} alt="" />
+              </div>
+              <div className="museumItemInfo">
+                <p className="museumItemName">{val.name}</p>
+                <p className="museumItemLocation">Location: {val.location}</p>
+              </div>
             </div>
         );
       })}

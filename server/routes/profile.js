@@ -7,6 +7,7 @@ const {
   getFirstUser,
   removeUser,
   editUser,
+  updateEmail
 } = require("../database");
 
 router.get("/", (req, res) => {
@@ -19,8 +20,16 @@ router.get("/user/:userID", async (req, res) => {
   res.json(user);
 });
 
-router.post("/user/newuser", async (req, res) => {
-  console.log("adding new user...");
+router.post("/addUser", async (req, res) => {
+  // console.log("adding new user...");
+  let sub = req.body.sub
+  sub = sub.slice(6, sub.length);
+  const filter = { _id: ObjectId(sub)};
+  // console.log(sub)
+
+  // const response = await addUserProfile(req.body);
+  const response = await editUser(filter, req.body);
+  res.json(response)
 });
 
 router.get("/getFirstUser", async (req, res) => {
@@ -47,6 +56,15 @@ router.post("/updateUser", async (req, res) => {
   console.log("**************");
   let response = await editUser({ _id: ObjectId(req.body.id) }, updatedData);
   console.log(response);
+  res.json(response);
+});
+
+router.put("/update", async (req, res) => {
+  console.log("updating user email", req.body);
+  const response = await updateEmail(
+    { _id: ObjectId(req.body["_id"]) },
+    req.body
+  );
   res.json(response);
 });
 
