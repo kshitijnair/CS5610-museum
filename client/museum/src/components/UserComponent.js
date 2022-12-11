@@ -114,15 +114,6 @@ const UserComponent = () => {
   // const getImageName = () => clicked ? 'check' : 'edit'
 
   async function editButtonClicked(newEmail) {
-    // setClicked(!clicked);
-    // console.log(newEmail);
-    // if (clicked) {
-    //   const editForm = document.body.querySelector('.editForm');
-    //   editForm.classList.toggle('.hidden');
-    //   document.body.querySelector('.editButton').setAttribute('src', '../assets/check.png')
-    // } else {
-    //   // update user email
-    // }
     console.log(userDeets)
     let newUser = userDeets;
     newUser.email = newEmail;
@@ -150,12 +141,12 @@ const UserComponent = () => {
         </div>
         <div className="userContact">
           <p className="userEmail">{userDeets.email}</p>
-          <input type="email" name="email"  
+          <input className="inputEmail" type="email" name="email"  
             placeholder="Enter new email here"
             onChange={ (e) => setNewEmail(e.target.value) } />
           {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
             onClick={(e) => editButtonClicked(e.target.value)} /> */}
-          <button onClick={() => editButtonClicked(newEmail)}>Submit</button>
+          <button className="emailBtn" onClick={() => editButtonClicked(newEmail)}>Submit</button>
         </div>
       </div>
       <div>

@@ -1,11 +1,9 @@
 .museumContainer {
-    
     width: 70%;
     margin: 2rem auto;
 }
 
 .museumCard {
-    border: 1px solid white;
     justify-content: center;
 }
 
@@ -14,10 +12,9 @@
     /* border: 2px solid green; */
     width: 100%;
     margin: auto;
+    border-radius: 1rem;
 
 }
-
-
 
 .bookingCard {
     color: black ;
@@ -28,9 +25,17 @@
     padding: 1.5rem 2rem;
 }
 
+.ticketText {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 1rem !important;
+}
+
 .bookingCard > p {
     margin: 0;
 }
+
+
 
 .number {
     width: 50px;
@@ -69,4 +74,64 @@
 .ticketPrice {
     font-weight: bold;
     font-size: large;
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .museumCard > div {
+        border-radius: 2rem;
+        width: 50%;
+        margin: auto;
+    }
+
+    .museumImage {
+        border-radius: 2rem;
+    }
+
+    .museumN {
+        font-size: 32px;
+    }
+
+    .numberLabel, .dateLabel {
+        width: 200px;
+        margin-right: 1rem;
+    }
+
+    .number, .date {
+        margin-left: 0;
+    }
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .bookingCard {
+        width: 70%;
+        margin: auto;
+        margin-top: 2rem;
+    }
+
+    .bookingCard > button {
+        margin: auto;
+    }
+
+}
+
+@media only screen and (max-width: 628px) {
+
+    .bookingCard {
+        width: 80%;
+        margin: auto;
+        margin-top: 2rem;
+    }
+
+    .bookingCard > input {
+        display: block;
+        margin-left: 0;
+    }
+
+    .bookingCard > button {
+        margin: auto;
+    }
+
 }

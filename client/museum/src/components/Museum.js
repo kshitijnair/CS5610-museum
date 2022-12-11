@@ -67,17 +67,17 @@ const Museum = () => {
                 <div>
                     <img className='museumImage' src={museum.image} alt="" />   
                 </div>
-                <h2>{museum.name}</h2>
+                <h2 className='museumN' >{museum.name}</h2>
                 <p>{museum.location}</p>
                 <p>{museum.description}</p>
             </div>
             <div className='bookingCard'>
-                <p>Buy Tickets:</p>
-                <label htmlFor="number">No. of Tickets</label>
+                <p className='ticketText'>Buy Tickets:</p>
+                <label className='numberLabel' htmlFor="number">No. of Tickets</label>
                 <input className='number' type="number" name="number" id="number" value={number} 
                     onChange={(e) => setNumber(e.target.value)}/>
                     <br />
-                <label htmlFor="date">Date of Visit</label>
+                <label className='dateLabel' htmlFor="date">Date of Visit</label>
                 <input className='date' type="date" name="date" id="date" 
                     onChange={(e) => setDate(e.target.value)}/>
                 <br /><br />
@@ -85,8 +85,8 @@ const Museum = () => {
                 <p className='ticketPrice'>${ticketPrice * number}</p>
                 <br />
                 <button onClick={() => buyTicket(id, number, ticketPrice)}>Purchase</button>
-                <p>{museum.latitude}</p>
-                <p>{museum.longitude}</p>
+                {/* <p>{museum.latitude}</p>
+                <p>{museum.longitude}</p> */}
             </div>
         {/* <GoogleMapsComponent coordinates={[{latitude: museum.latitude}, {longitude:museum.longitude}]} /> */}
         {/* <a href=

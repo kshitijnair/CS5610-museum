@@ -49,18 +49,15 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   }
 
   const ticketRender = (
-    <ul>
+    <ul className="ticketList">
       {tickets.map((ticket) => (
         <li key={ticket._id}>
-          <div>
-            <div>
-              <p>Ticket</p>
-            </div>
+          <div className="ticketCard">
             <div className="ticketSummary">
               <img className="ticketImage" src="" alt="" />
-              <p>Booking Number #{ticket.id.toString().toUpperCase()}</p>
+              <p className="bookingID">Booking Number #{ticket.id.toString().toUpperCase().slice(0, 5)}</p>
               <div>
-                <p>{ticket.name}</p>
+                <p className="ticketMuseumName">{ticket.name}</p>
                 <p>People attendig : {ticket.number}</p>
                 <p>Date: {ticket.date}</p>
                 <p>Time: {ticket.time}</p>
@@ -71,21 +68,24 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
             </div>
             <button onClick={() => { window.open(`https://www.google.com/maps/search/?api=1&query=${ParseDMS(ticket.latitude)}%2C${ParseDMS(ticket.longitude)}`)}}>Get Directions</button>
             {/* <a target="_blank" rel="noreferrer noopener" href={}>Get Directions</a><br /> */}
-            <button onClick={() => deleteBooking(ticket.id)}>
+
+            <div>
+              <p className="updateText">Update Booking</p>
+              <div>
+                <label htmlFor="date">New Date: </label>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  onChange={(e) => setDate(e.target.value)}
+                />
+                <button onClick={() => updateTicket(ticket, date)}>
+                  Confirm
+                </button>
+              </div>
+              <button onClick={() => deleteBooking(ticket.id)}>
               Delete Booking
             </button>
-            <div>
-              <p>Update Booking Here:</p>
-              <label htmlFor="date">New Date: </label>
-              <input
-                type="date"
-                name="date"
-                id="date"
-                onChange={(e) => setDate(e.target.value)}
-              />
-              <button onClick={() => updateTicket(ticket, date)}>
-                Confirm
-              </button>
             </div>
           </div>
         </li>

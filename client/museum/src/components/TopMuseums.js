@@ -35,16 +35,16 @@ const TopMuseums = () => {
       }
 
     const lists = (
-    <div>
+    <div className='museumDiv'>
         {list.map((val, key) => {
             const id = val._id;
             return (
-                <div className="museumCard" key={id} onClick={ () => {
+                <div className="topMuseumCard" key={id} onClick={ () => {
                 selectMuseum(id);
                 }}>
-                <img className='museumImg' src="" alt="" />
-                <p className='museumName'>{val.name}</p>
-                <p className='museumLocation'>Located in: {val.location}</p>
+                    <img className='museumImg' src={val.image} alt="" />
+                    <p className='museumName'>{val.name}</p>
+                    <p className='museumLocation'>{val.location}</p>
                 </div>
             );
         })}
