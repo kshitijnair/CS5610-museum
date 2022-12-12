@@ -155,7 +155,7 @@ const UserComponent = () => {
           {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
             onClick={(e) => editButtonClicked(e.target.value)} /> */}
           <button className="emailBtn" onClick={() => editButtonClicked(newEmail)}>Submit</button>
-
+</div>
         </div>
       </div>
     </>
