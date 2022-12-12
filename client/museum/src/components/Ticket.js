@@ -8,7 +8,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   });
 
   const deleteBooking = async (id) => {
-    setTicketsUpdated(!ticketsUpdated)
+    setTicketsUpdated(!ticketsUpdated);
     console.log("ID IS: ---------", id);
     const options = {
       method: "DELETE",
@@ -18,13 +18,13 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
       body: JSON.stringify({ id: id }),
     };
     const response = await fetch(
-      "http://localhost:8080/tickets/delete",
+      "https://museum-server-ae4u.onrender.com/tickets/delete",
       options
     );
   };
 
   const updateTicket = async (ticket) => {
-    setTicketsUpdated(!ticketsUpdated)
+    setTicketsUpdated(!ticketsUpdated);
     ticket.date = date;
     const options = {
       method: "PUT",
@@ -34,17 +34,16 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
       body: JSON.stringify(ticket),
     };
     const response = await fetch(
-      "http://localhost:8080/tickets/update",
+      "https://museum-server-ae4u.onrender.com/tickets/update",
       options
     );
   };
 
   function ParseDMS(coordinates) {
-    console.log(typeof coordinates)
-    const split = coordinates.split('°');
-    console.log(split[1][1])
-    if(split[1][1] === `S` || split[1][1] === `W`)
-      return '-' + split[0];
+    console.log(typeof coordinates);
+    const split = coordinates.split("°");
+    console.log(split[1][1]);
+    if (split[1][1] === `S` || split[1][1] === `W`) return "-" + split[0];
     return split[0];
   }
 
