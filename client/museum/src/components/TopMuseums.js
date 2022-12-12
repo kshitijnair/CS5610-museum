@@ -13,7 +13,7 @@ const TopMuseums = () => {
             const data = await fetchTopMuseums();
             // const topMuseums = data.json();\
             console.log("data----", data)
-            const top = Object.entries(data).slice(0,3).map(item => item[1]);
+            const top = Object.entries(data).slice(4,7).map(item => item[1]);
             setList(top)
             setLoading(false);
 

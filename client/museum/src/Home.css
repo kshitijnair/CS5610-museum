@@ -51,6 +51,21 @@
     margin-top: 3rem;
 }
 
+.userBtn {
+    border: none;
+    width: 5rem;
+    margin-top: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.75rem;
+    background-color: rgb(21, 21, 21);
+    color: antiquewhite;
+}
+
+.userBtn:hover {
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 768px) {
 
     .topMuseumCard {

@@ -58,7 +58,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
               <p className="bookingID">Booking Number #{ticket.id.toString().toUpperCase().slice(0, 5)}</p>
               <div>
                 <p className="ticketMuseumName">{ticket.name}</p>
-                <p>People attendig : {ticket.number}</p>
+                <p>People attending : {ticket.number}</p>
                 <p>Date: {ticket.date}</p>
                 <p>Time: {ticket.time}</p>
               </div>
@@ -66,12 +66,12 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
               {/* <p>{ParseDMS(ticket.latitude)}</p>
               <p>{ParseDMS(ticket.longitude)}</p> */}
             </div>
-            <button onClick={() => { window.open(`https://www.google.com/maps/search/?api=1&query=${ParseDMS(ticket.latitude)}%2C${ParseDMS(ticket.longitude)}`)}}>Get Directions</button>
+            <button className="directionBtn" onClick={() => { window.open(`https://www.google.com/maps/search/?api=1&query=${ParseDMS(ticket.latitude)}%2C${ParseDMS(ticket.longitude)}`)}}>Get Directions</button>
             {/* <a target="_blank" rel="noreferrer noopener" href={}>Get Directions</a><br /> */}
 
-            <div>
+            <div className="updateElement">
               <p className="updateText">Update Booking</p>
-              <div>
+              <div className="dateElement">
                 <label htmlFor="date">New Date: </label>
                 <input
                   type="date"
@@ -83,8 +83,8 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
                   Confirm
                 </button>
               </div>
-              <button onClick={() => deleteBooking(ticket.id)}>
-              Delete Booking
+              <button className="deleteBtn" onClick={() => deleteBooking(ticket.id)}>
+              Cancel Booking
             </button>
             </div>
           </div>

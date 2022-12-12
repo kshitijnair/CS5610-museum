@@ -1,6 +1,6 @@
 .spinner {
-    border: 6px solid wheat;
-    width: 50%;
+    /* border: 6px solid wheat; */
+    width: 15%;
     margin: auto;
 }
 
@@ -40,6 +40,9 @@
     margin-top: 1rem;
     border-radius: 1rem;
     background-color: antiquewhite ;
+}
+.emailBtn:hover {
+    cursor: pointer;
 }
 
 .editButton {
@@ -81,13 +84,49 @@
     font-size: 26px;
 }
 
+.directionBtn {
+    border-radius: 1rem;
+    background-color: rgb(38, 126, 60);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+}
+
+.updateElement {
+    display: flex;
+    flex-direction: column;
+}
+
+.dateElement {
+    margin: auto;
+    margin: 1rem auto;
+    margin-bottom: 2rem;
+}
+
 .updateText {
     width: 80%;
     margin: auto;
     text-align: center;
     margin: 1rem auto;
-    font-weight: 500;
+    font-weight: 700;
     text-align: center;
+}
+
+.deleteBtn {
+    width: 150px;
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: rgb(96, 10, 10);
+    color: white;
+}
+
+.deleteBtn:hover {
+    cursor: pointer;
+}
+.directionBtn:hover {
+    cursor: pointer;
 }
 
 
@@ -107,6 +146,10 @@
 
     .userImage {
         width: 20%;
+    }
+
+    .ticketCard {
+        width: 40%;
     }
 
 }
