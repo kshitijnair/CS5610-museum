@@ -57,7 +57,7 @@ const UserComponent = () => {
         body: JSON.stringify(userDeets),
       };
       const repsonse = await fetch(
-        "http://localhost:8080/profile/addUser",
+        "https://museum-server-ae4u.onrender.com/profile/addUser",
         options
       );
 
@@ -81,7 +81,7 @@ const UserComponent = () => {
         body: JSON.stringify(ticket),
       };
       const repsonse = await fetch(
-        "http://localhost:8080/tickets/purchase",
+        "https://museum-server-ae4u.onrender.com/tickets/purchase",
         options
       );
     }
@@ -100,13 +100,13 @@ const UserComponent = () => {
 
   async function fetchTickets(userID) {
     console.log("FETCHING TICKETS FOR USER: ", userID)
-    const response = await fetch(`http://localhost:8080/tickets/tickets/${userID}`);
+    const response = await fetch(`https://museum-server-ae4u.onrender.com/tickets/tickets/${userID}`);
     const tickets = await response.json();
     return tickets;
   }
 
   async function fetchUser() {
-    const response = await fetch("http://localhost:8080/profile/getFirstUser");
+    const response = await fetch("https://museum-server-ae4u.onrender.com/profile/getFirstUser");
     const user = await response.json();
     return user;
   }
@@ -128,7 +128,7 @@ const UserComponent = () => {
       },
       body: JSON.stringify(newUser),
     };
-    await fetch("http://localhost:8080/profile/update", options);
+    await fetch("https://museum-server-ae4u.onrender.com/profile/update", options);
   }
 
   const userRender = (
