@@ -72,7 +72,6 @@ const MuseumComponent = () => {
               </div>
 
             </div>
-          </div>
         );
       })}
       <Outlet />
