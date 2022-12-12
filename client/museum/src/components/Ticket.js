@@ -18,7 +18,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
       body: JSON.stringify({ id: id }),
     };
     const response = await fetch(
-      "http://localhost:8080/tickets/delete",
+      "https://museum-server-ae4u.onrender.com/tickets/delete",
       options
     );
   };
@@ -34,7 +34,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
       body: JSON.stringify(ticket),
     };
     const response = await fetch(
-      "http://localhost:8080/tickets/update",
+      "https://museum-server-ae4u.onrender.com/tickets/update",
       options
     );
   };

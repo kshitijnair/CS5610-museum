@@ -22,7 +22,7 @@ const MuseumComponent = () => {
   async function fetchMuseums() {
     console.log("fetching museums...");
     const response = await fetch(
-      "http://localhost:8080/home/museums"
+      "https://museum-server-ae4u.onrender.com/home/museums"
     );
     const museumList = await response.json();
     return museumList;
