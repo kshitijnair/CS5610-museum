@@ -63,14 +63,14 @@ const MuseumComponent = () => {
             key={id}
             onClick={() => {
               selectMuseum(id);
-            }}
-          >
-            <div>
-              <img className="museumItemImage" src={val.image} alt="" />
-            </div>
-            <div className="museumItemInfo">
-              <p className="museumItemName">{val.name}</p>
-              <p className="museumItemLocation">Location: {val.location}</p>
+            }}>
+                <img className="museumItemImage" src={val.image} alt="" />
+
+              <div className="museumItemInfo">
+                <p className="museumItemName">{val.name}</p>
+                <p className="museumItemLocation">{val.location}</p>
+              </div>
+
             </div>
           </div>
         );

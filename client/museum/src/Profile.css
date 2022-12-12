@@ -1,19 +1,48 @@
+.spinner {
+    /* border: 6px solid wheat; */
+    width: 15%;
+    margin: auto;
+}
+
+.spinner > img {
+    margin: 2rem;
+    /* border: 5px solid red; */
+}
+
+
 .userComponent {
-    width: 70%;
+    width: 90%;
     margin: auto;
 }
 
 .userCard {
     /* display: flex; */
     /* border: 2px solid white; */
-    width: 50%;
+    width: 75%;
     margin-top: 2rem;
     margin: 2rem auto;
     text-align: center;
 }
 
-.userCard > div {
-    /* border: 1px solid white; */
+.userContact {
+    width: 100%;
+}
+
+.inputEmail {
+    width: 80%;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.emailBtn {
+    width: 50%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    background-color: antiquewhite ;
+}
+.emailBtn:hover {
+    cursor: pointer;
 }
 
 .editButton {
@@ -28,4 +57,99 @@
 
 .userImage {
     border-radius: 2rem;
+}
+
+.ticketCard {
+    width: 80%;
+    margin: 2rem auto;
+    padding: 0 2rem 2rem 2rem;
+    background-color: antiquewhite;
+    color: black;
+    border-radius: 0.4rem;
+}
+
+.bookingID {
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration:overline;
+}
+
+.ticketList {
+    list-style: none;
+    padding: 0;
+}
+
+.ticketMuseumName {
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.directionBtn {
+    border-radius: 1rem;
+    background-color: rgb(38, 126, 60);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+}
+
+.updateElement {
+    display: flex;
+    flex-direction: column;
+}
+
+.dateElement {
+    margin: auto;
+    margin: 1rem auto;
+    margin-bottom: 2rem;
+}
+
+.updateText {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    margin: 1rem auto;
+    font-weight: 700;
+    text-align: center;
+}
+
+.deleteBtn {
+    width: 150px;
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: rgb(96, 10, 10);
+    color: white;
+}
+
+.deleteBtn:hover {
+    cursor: pointer;
+}
+.directionBtn:hover {
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 900px) {
+
+    .inputEmail {
+        display: block;
+        margin: auto;
+        width: 25%;
+    }
+
+    .emailBtn {
+        display: block;
+        width: 20% ;
+        margin: 1rem auto;
+    }
+
+    .userImage {
+        width: 20%;
+    }
+
+    .ticketCard {
+        width: 40%;
+    }
+
 }

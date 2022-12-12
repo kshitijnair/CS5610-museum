@@ -118,16 +118,8 @@ const UserComponent = () => {
   // const getImageName = () => clicked ? 'check' : 'edit'
 
   async function editButtonClicked(newEmail) {
-    // setClicked(!clicked);
-    // console.log(newEmail);
-    // if (clicked) {
-    //   const editForm = document.body.querySelector('.editForm');
-    //   editForm.classList.toggle('.hidden');
-    //   document.body.querySelector('.editButton').setAttribute('src', '../assets/check.png')
-    // } else {
-    //   // update user email
-    // }
-    console.log(userDeets);
+    console.log(userDeets)
+
     let newUser = userDeets;
     newUser.email = newEmail;
     newUser._id = userID;
@@ -149,33 +141,21 @@ const UserComponent = () => {
 
   const userRender = (
     <>
-      <div className="userComponent">
-        <div className="userCard">
-          <div>
-            <img className="userImage" src={userDeets.picture} alt="" />
-            <p className="userName">{userDeets.nickname.toUpperCase()}</p>
-          </div>
-          <div className="userContact">
-            <p className="userEmail">{userDeets.email}</p>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter new email here"
-              onChange={(e) => setNewEmail(e.target.value)}
-            />
-            {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
-            onClick={(e) => editButtonClicked(e.target.value)} /> */}
-            <button onClick={() => editButtonClicked(newEmail)}>Submit</button>
-          </div>
-        </div>
+    <div className="userComponent">
+      <div className="userCard">
         <div>
-          <br />
-          <h2>Tickets:</h2>
-          <Ticket
-            ticketsUpdated={ticketsUpdated}
-            setTicketsUpdated={setTicketsUpdated}
-            tickets={tickets}
-          />
+          <img className="userImage" src={userDeets.picture} alt="" />
+          <p className="userName">{userDeets.nickname.toUpperCase()}</p>
+        </div>
+        <div className="userContact">
+          <p className="userEmail">{userDeets.email}</p>
+          <input className="inputEmail" type="email" name="email"  
+            placeholder="Enter new email here"
+            onChange={ (e) => setNewEmail(e.target.value) } />
+          {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
+            onClick={(e) => editButtonClicked(e.target.value)} /> */}
+          <button className="emailBtn" onClick={() => editButtonClicked(newEmail)}>Submit</button>
+
         </div>
       </div>
     </>
