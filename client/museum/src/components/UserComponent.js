@@ -8,7 +8,7 @@ import Loading from "./loading";
 const UserComponent = () => {
   const [user, setUser] = useState(useAuth0());
   const [userDeets, setUserDeets] = useState(useAuth0().user);
-  const sub = userDeets.sub
+  const sub = userDeets.sub;
   const userID = sub.slice(6, sub.length);
 
   // const { name, picture, email } = user;
@@ -62,10 +62,10 @@ const UserComponent = () => {
       );
 
       if (search.length > 0 && ticketCount < 1) {
-        console.log("ticket counter is: ", ticketCount)
-        addNewticket(ticket)
+        console.log("ticket counter is: ", ticketCount);
+        addNewticket(ticket);
         setTicketCount(ticketCount + 1);
-      };
+      }
     }
     getUser();
 
@@ -101,12 +101,14 @@ const UserComponent = () => {
   async function fetchTickets(userID) {
     console.log("FETCHING TICKETS FOR USER: ", userID)
     const response = await fetch(`https://museum-server-ae4u.onrender.com/tickets/tickets/${userID}`);
+
     const tickets = await response.json();
     return tickets;
   }
 
   async function fetchUser() {
     const response = await fetch("https://museum-server-ae4u.onrender.com/profile/getFirstUser");
+
     const user = await response.json();
     return user;
   }
@@ -115,12 +117,13 @@ const UserComponent = () => {
 
   async function editButtonClicked(newEmail) {
     console.log(userDeets)
+
     let newUser = userDeets;
     newUser.email = newEmail;
     newUser._id = userID;
 
-    setUserDeets(userDeets => ({...userDeets, email: newEmail}))
-    
+    setUserDeets((userDeets) => ({ ...userDeets, email: newEmail }));
+
     const options = {
       method: "PUT",
       headers: {
@@ -129,6 +132,7 @@ const UserComponent = () => {
       body: JSON.stringify(newUser),
     };
     await fetch("https://museum-server-ae4u.onrender.com/profile/update", options);
+
   }
 
   const userRender = (
@@ -147,20 +151,13 @@ const UserComponent = () => {
           {/* <img className="editButton" src={require('../assets/edit.png')} alt="" 
             onClick={(e) => editButtonClicked(e.target.value)} /> */}
           <button className="emailBtn" onClick={() => editButtonClicked(newEmail)}>Submit</button>
+</div>
         </div>
-      </div>
-      <div>
-        <br />
-        <h2>Tickets:</h2>
-        <Ticket ticketsUpdated={ticketsUpdated} setTicketsUpdated={setTicketsUpdated} tickets={tickets} />
-      </div>
       </div>
     </>
   );
 
-  return (
-    <>{loadingTickets ? <h1>Loading data...</h1> : userRender}</>
-  );
+  return <>{loadingTickets ? <h1>Loading data...</h1> : userRender}</>;
 };
 
 export default withAuthenticationRequired(UserComponent, {

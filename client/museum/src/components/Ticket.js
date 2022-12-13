@@ -8,7 +8,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   });
 
   const deleteBooking = async (id) => {
-    setTicketsUpdated(!ticketsUpdated)
+    setTicketsUpdated(!ticketsUpdated);
     console.log("ID IS: ---------", id);
     const options = {
       method: "DELETE",
@@ -24,7 +24,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   };
 
   const updateTicket = async (ticket) => {
-    setTicketsUpdated(!ticketsUpdated)
+    setTicketsUpdated(!ticketsUpdated);
     ticket.date = date;
     const options = {
       method: "PUT",
@@ -40,11 +40,10 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
   };
 
   function ParseDMS(coordinates) {
-    console.log(typeof coordinates)
-    const split = coordinates.split('°');
-    console.log(split[1][1])
-    if(split[1][1] === `S` || split[1][1] === `W`)
-      return '-' + split[0];
+    console.log(typeof coordinates);
+    const split = coordinates.split("°");
+    console.log(split[1][1]);
+    if (split[1][1] === `S` || split[1][1] === `W`) return "-" + split[0];
     return split[0];
   }
 

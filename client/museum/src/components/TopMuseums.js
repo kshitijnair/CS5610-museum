@@ -1,6 +1,6 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TopMuseums = () => {
     const [isLoading, setLoading] = useState(true);
@@ -48,10 +48,11 @@ const TopMuseums = () => {
                 </div>
             );
         })}
+
     </div>
-    )
+  );
 
-    return (<>{ isLoading ? <h1>Loading...</h1> : lists }</>)
-}
+  return <>{isLoading ? <h1>Loading...</h1> : lists}</>;
+};
 
-export default TopMuseums
+export default TopMuseums;
