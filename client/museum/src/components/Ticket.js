@@ -23,6 +23,7 @@ const Ticket = ({ ticketsUpdated, setTicketsUpdated, tickets }) => {
     );
   };
 
+  
   const updateTicket = async (ticket) => {
     setTicketsUpdated(!ticketsUpdated)
     ticket.date = date;
